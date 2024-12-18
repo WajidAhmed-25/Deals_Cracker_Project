@@ -1,52 +1,3 @@
-// import React,{useEffect} from 'react';
-// import AOS from 'aos';
-// import 'aos/dist/aos.css';
-
-
-// // Imports //
-
-// import LoginForm from './Components/Login/index'
-// import RegisterForm from './Components/Signup/index'
-
-
-
-// function App() {
-
-
-//   useEffect(() => {
-//     AOS.init(); 
-//   }, []);
-
-
-//   return (
-//     <div className="">
-
-    
-   
-//    <LoginForm/>
-
-//    <RegisterForm/>
-
-
-//     </div>
-//   );
-// }
-
-// export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import AOS from 'aos';
@@ -55,6 +6,7 @@ import 'aos/dist/aos.css';
 // Imports
 import LoginForm from './Components/Login/index';
 import RegisterForm from './Components/Signup/index';
+import Homepage from './Components/HomePage/index'
 
 function App() {
 
@@ -73,8 +25,9 @@ function App() {
           <Route path="/register" element={<RegisterForm />} />
 
         {/* HomePage */}
-        
-       
+
+            <Route path="/homepage" element={<Homepage/>} />
+            
         </Routes>
    
     </Router>

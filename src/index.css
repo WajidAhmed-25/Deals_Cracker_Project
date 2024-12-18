@@ -3,3 +3,16 @@
 @tailwind components;
 
 @tailwind utilities;
+
+
+.ThemeColor{
+
+    background-color: #237da0f8;
+ 
+}
+
+.fontColor{
+    color: #237da0f8;
+}
+
+
