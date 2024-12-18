@@ -22,7 +22,7 @@ const DealsSlider = () => {
       title: "KARACHI LOVES TOOSO",
       image: "https://foodoplanet.com/wp-content/uploads/2019/12/Tooso-Karachi-6_yg2saf.webp",
       description: "20% DISCOUNT ON ENTIRE MENU",
-      bgColor: "bg-sky-400",
+      bgColor: "bg-[#237da0f8]",
     },
     {
       id: 3,
@@ -39,7 +39,7 @@ const DealsSlider = () => {
       title: "Pizza Deals",
       image: "/api/placeholder/400/320",
       description: "20% Off on Large Pizzas",
-      bgColor: "bg-red-600",
+      bgColor: "bg-[#237da0f8]",
     }
   ];
 
@@ -102,7 +102,7 @@ const DealsSlider = () => {
                   <div key={deal.id} className="w-1/2">
                     {deal.type === "burger" ? (
                       // Burger deal card
-                      <div className="overflow-hidden bg-white rounded-lg shadow-lg">
+                      <div className="overflow-hidden bg-gray-100 rounded-lg shadow-lg">
                         <div className="relative p-4">
                           <img 
                             src={deal.image} 
@@ -123,8 +123,8 @@ const DealsSlider = () => {
                       // Menu discount card
                       <div className={`${deal.bgColor} rounded-lg shadow-lg overflow-hidden h-full`}>
                         <div className="flex flex-col items-center justify-center h-full p-6 text-white">
-                          <h3 className="mb-4 text-3xl font-bold text-center">{deal.title}</h3>
-                          <p className="text-xl text-center">{deal.description}</p>
+                          <h3 className="mb-4 text-3xl font-bold text-center text-white">{deal.title}</h3>
+                          <p className="text-xl text-center text-white">{deal.description}</p>
                         </div>
                       </div>
                     )}

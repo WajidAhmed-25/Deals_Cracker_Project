@@ -7,6 +7,7 @@ import Dropdown from './Dropdowns/index'
 import Slider from './SwipperSliderMain/index'
 import BrandSlider from './BrandsSlider/index'
 import DealsSlider from './DealsSlider'
+import ProductCards from './ProductCards/index'
 
 
 const index = () => {
@@ -19,6 +20,7 @@ const index = () => {
 <BrandSlider/>
 <br/>
 <DealsSlider/>
+<ProductCards/>
 
 
 
