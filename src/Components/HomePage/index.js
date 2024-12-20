@@ -2,9 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 // Existing imports
-import Navbar from '../Navbar/index';
-import Dropdown from './Dropdowns/index';
-import Footer from '../Footer/index';
+
 import Slider from './SwipperSliderMain/index';
 import BrandSlider from './BrandsSlider/index';
 import DealsSlider from './DealsSlider';
@@ -59,9 +57,9 @@ const Index = () => {
 
   return (
     <div className='bg-white'>
-      <Navbar />
+      {/* <Navbar /> */}
       
-      <motion.div
+      {/* <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -70,7 +68,7 @@ const Index = () => {
         <motion.div variants={staggerItem}>
           <Dropdown />
         </motion.div>
-      </motion.div>
+      </motion.div> */}
 
       <motion.div
         initial="hidden"
@@ -183,7 +181,7 @@ const Index = () => {
       </motion.div>
 
       <ScrollToTop />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
