@@ -7,6 +7,7 @@ import 'aos/dist/aos.css';
 import LoginForm from './Components/Login/index';
 import RegisterForm from './Components/Signup/index';
 import Homepage from './Components/HomePage/index';
+import ProductPage from './Components/ProductPage/index'
 
 
 // Imports Conditional //
@@ -34,6 +35,7 @@ function Layout() {
 
         {/* HomePage */}
         <Route path="/homepage" element={<Homepage />} />
+        <Route path='/product-page' element={<ProductPage/>}/>
       </Routes>
       {!isAuthPage && <Footer />}
     </>
