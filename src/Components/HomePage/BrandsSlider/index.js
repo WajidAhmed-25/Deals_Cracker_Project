@@ -35,7 +35,6 @@ const Index = () => {
   const displayLogos = logos.slice(0, 8);
 
 
-  
   return (
     <div className="relative w-full mt-12 overflow-hidden">
       {/* Outer container with fixed width */}

@@ -10,8 +10,6 @@ import Footer from '../Footer/index'
 // Components Import //
 
 
-
-
 import Slider from './SwipperSliderMain/index'
 import BrandSlider from './BrandsSlider/index'
 import DealsSlider from './DealsSlider'
@@ -24,31 +22,68 @@ import ProductShowcase from './FourProductsDiv'
 import FeaturesSection from './Banners'
 
 
+// ----- Scroll Top ----//
+
+import ScrollToTop from '../ScrollArrow'
+
+
+
+
+// ---------- AOS Animation ---------------//
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+
 
 const Index = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    AOS.init({
+      once: true,
+      disable: "phone",
+      duration: 700,
+      easing: "ease-out-cubic",
+    });
+  }, []);
 
 
   return (
     <div className='bg-white'>
 
-<Navbar/>  
+{/* <Navbar/>  
 <Dropdown/>    
       
 
-<Slider/>
+<Slider/> */}
+
+  <Navbar />
+
+<div data-aos="zoom-in">
+  <Dropdown />
+</div>
+<div data-aos="fade-up">
+  <Slider />
+</div>
+
 <BrandSlider/>
+
+
 
 <DealsSlider/>
 <ProductCards/>
-
 <CardsShufftler/>
 <WeeklyTopVendors/>
 <DeliveryBanner/>
 <OrganicFoodGrid/>
 <ProductShowcase/>
-
 <FeaturesSection/>
 
+
+<ScrollToTop/>
 <Footer/>
     </div>
   )

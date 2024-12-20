@@ -1,12 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const DealsSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const timeoutRef = useRef(null);
 
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: 'ease-out-cubic'
+    });
+  }, []);
 
   const deals = [
     {
@@ -84,7 +93,11 @@ const DealsSlider = () => {
     <div className="w-full px-4 py-6 mx-auto mt-8 mb-6 max-w-8xl">
       <div className="relative">
         {/* Header */}
-        <div className="flex items-center justify-between mb-4">
+        <div 
+          className="flex items-center justify-between mb-4"
+          data-aos="fade-down"
+          data-aos-delay="100"
+        >
           <h2 className="text-4xl font-bold fontColor">Today's Best Deals</h2>
           <button className="fontColor hover:text-[#237da0f8]">View All Deals</button>
         </div>
@@ -97,14 +110,22 @@ const DealsSlider = () => {
               transform: `translateX(-${currentIndex * 100}%)`,
             }}
           >
-     
             {Array(totalSlides).fill().map((_, slideIndex) => (
               <div key={slideIndex} className="flex flex-shrink-0 w-full gap-4 mt-4">
-                {deals.slice(slideIndex * 2, slideIndex * 2 + 2).map((deal) => (
-                  <div key={deal.id} className="w-1/2">
+                {deals.slice(slideIndex * 2, slideIndex * 2 + 2).map((deal, index) => (
+                  <div 
+                    key={deal.id} 
+                    className="w-1/2"
+                    data-aos="fade-up"
+                    data-aos-delay={200 + (index * 100)}
+                  >
                     {deal.type === "burger" ? (
                       // Burger deal card
-                      <div className="overflow-hidden bg-gray-100 rounded-lg shadow-lg">
+                      <div 
+                        className="overflow-hidden bg-gray-100 rounded-lg shadow-lg"
+                        data-aos="zoom-in"
+                        data-aos-delay={300 + (index * 100)}
+                      >
                         <div className="relative p-4">
                           <img 
                             src={deal.image} 
@@ -123,7 +144,11 @@ const DealsSlider = () => {
                       </div>
                     ) : (
                       // Menu discount card
-                      <div className={`${deal.bgColor} rounded-lg shadow-lg overflow-hidden h-full`}>
+                      <div 
+                        className={`${deal.bgColor} rounded-lg shadow-lg overflow-hidden h-full`}
+                        data-aos="zoom-in"
+                        data-aos-delay={300 + (index * 100)}
+                      >
                         <div className="flex flex-col items-center justify-center h-full p-6 text-white">
                           <h3 className="mb-4 text-3xl font-bold text-center text-white">{deal.title}</h3>
                           <p className="text-xl text-center text-white">{deal.description}</p>
@@ -134,14 +159,6 @@ const DealsSlider = () => {
                 ))}
               </div>
             ))}
-          </div>
-
-          {/* Navigation buttons */}
- 
-
-          {/* Dots indicator */}
-          <div className="absolute flex space-x-2 -translate-x-1/2 bottom-4 left-1/2">
- 
           </div>
         </div>
       </div>
