@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import dhanak from './Feature_Products/dhanak.png';
 import alkaram from './Feature_Products/ak2.png';
@@ -11,6 +11,7 @@ import junaid from './Feature_Products/junaid2.png';
 import sana from './Feature_Products/sanasafinaz.png';
 import agha from './Feature_Products/agha2.png';
 import noor from './Feature_Products/noor2.png';
+
 
 
 
@@ -32,9 +33,11 @@ const Index = () => {
 
   // Get first 8 logos
   const displayLogos = logos.slice(0, 8);
+
+
   
   return (
-    <div className="relative w-full mt-24 overflow-hidden">
+    <div className="relative w-full mt-12 overflow-hidden">
       {/* Outer container with fixed width */}
       <div className="flex w-full">
         {/* Scrolling container */}

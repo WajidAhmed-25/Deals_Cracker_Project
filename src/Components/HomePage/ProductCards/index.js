@@ -35,7 +35,7 @@ const plantData = [
     name: "Oak Tree",
     type: "Outdoor",
     price: 68.50,
-    image: "https://saraclothes.com/cdn/shop/products/1_900x_00b988ce-d982-4719-be95-957c8be900b1.jpg?v=1636211147",
+    image: "https://tse3.mm.bing.net/th?id=OIP.llaHtgrXAu1abgIspIT4DQHaLH&pid=Api&P=0&h=220",
     bgColor: "bg-[#237da0f8]",
     priceColor: "text-[#237da0f8]"
   },

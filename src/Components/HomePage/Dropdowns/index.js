@@ -14,7 +14,7 @@ const Index = () => {
 
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = "03133960313";
+    const phoneNumber = "+923133960313";
     const whatsappURL = `https://wa.me/${phoneNumber}`;
     window.open(whatsappURL, "_blank");
   };
@@ -41,7 +41,7 @@ const Index = () => {
           </button>
           {/* Dropdown */}
           {openMenu === "categories" && (
-            <div className="absolute left-0 w-56 mt-2 bg-white border rounded-lg shadow-lg z-9999999">
+            <div className="absolute left-0 w-56 mt-2 bg-white border rounded-lg shadow-lg z-[9999]">
               <ul>
                 {[
                   "Vegetables & Fruit",
@@ -109,7 +109,7 @@ const Index = () => {
                 </button>
                 {/* Dropdown */}
                 {openMenu === link && link !== "Home" && (
-                  <div className="absolute left-0 w-48 mt-2 bg-white border rounded-lg shadow-lg">
+                  <div className="absolute left-0 w-48 mt-2 bg-white border rounded-lg shadow-lg z-[9999]">
                     <ul>
                       {["Option 1", "Option 2", "Option 3"].map((subItem) => (
                         <li
