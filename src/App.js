@@ -9,6 +9,10 @@ import RegisterForm from './Components/Signup/index';
 import Homepage from './Components/HomePage/index';
 import ProductPage from './Components/ProductPage/index'
 
+import ProfileUrl from './Components/Navbar/ProfileIcon/index'
+
+
+
 
 // Imports Conditional //
 
@@ -36,6 +40,9 @@ function Layout() {
         {/* HomePage */}
         <Route path="/homepage" element={<Homepage />} />
         <Route path='/product-page' element={<ProductPage/>}/>
+
+        <Route path="/profile" element={<ProfileUrl/>}/>
+       
       </Routes>
       {!isAuthPage && <Footer />}
     </>

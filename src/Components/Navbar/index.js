@@ -1,17 +1,62 @@
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faCircle, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
-const index = () => {
+import ProfileDropdown from './ProfileIcon/index';
+import WishlistPage from './Whishlist/index';
+
+const Index = () => {
+  const [isWishlistOpen, setWishlistOpen] = useState(false);
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  
+  // Create refs for the dropdown containers
+  const wishlistRef = useRef(null);
+  const profileRef = useRef(null);
+
+  useEffect(() => {
+    // Function to handle clicks outside
+    const handleClickOutside = (event) => {
+      // Check if click is outside both dropdowns
+      if (
+        wishlistRef.current && 
+        !wishlistRef.current.contains(event.target) &&
+        profileRef.current && 
+        !profileRef.current.contains(event.target)
+      ) {
+        setWishlistOpen(false);
+        setDropdownOpen(false);
+      }
+    };
+
+    // Add event listener
+    document.addEventListener('mousedown', handleClickOutside);
+
+    // Cleanup
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const toggleWishlist = () => {
+    setWishlistOpen(!isWishlistOpen);
+    if (isDropdownOpen) {
+      setDropdownOpen(false);
+    }
+  };
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!isDropdownOpen);
+    if (isWishlistOpen) {
+      setWishlistOpen(false);
+    }
+  };
+
   return (
-   
     <div className="w-full p-2 ThemeColor">
       <div className="flex flex-col items-center justify-between sm:flex-row bg-ThemeColor rounded-xl">
         {/* First Section: Logo */}
         <div className="flex items-center justify-center sm:justify-start w-full sm:w-[25%] px-4 sm:px-12 py-4 sm:py-0">
-          {/* Logo Container */}
           <div className="flex items-center justify-center w-20 h-20 bg-white rounded-full shadow-lg sm:w-24 sm:h-24">
-            {/* Logo */}
             <img src="/assets/logo.png" alt="Logo" className="object-contain w-[90%] h-[90%]" />
           </div>
         </div>
@@ -24,7 +69,6 @@ const index = () => {
               placeholder="Search for Grocery, Stores..."
               className="w-full px-4 py-3 tracking-wider text-center bg-white rounded-full outline-none sm:test-sm text-md"
             />
-            {/* Search Icon */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -44,18 +88,27 @@ const index = () => {
 
         {/* Third Section: Icons */}
         <div className="flex items-center justify-center sm:justify-end w-full sm:w-[25%] gap-4 sm:gap-6 pr-4 sm:pr-12 py-3">
-          {/* Heart Icon */}
-          <FontAwesomeIcon icon={faHeart} className="text-3xl text-white sm:text-5xl" />
+          <div ref={wishlistRef}>
+            <FontAwesomeIcon
+              icon={faHeart}
+              className="text-3xl text-white cursor-pointer sm:text-5xl"
+              onClick={toggleWishlist}
+            />
+            {isWishlistOpen && <WishlistPage onClose={toggleWishlist} />}
+          </div>
 
-          {/* Empty Circle Icon */}
-          <FontAwesomeIcon icon={faCircle} className="text-3xl text-white sm:text-5xl" />
+          <div ref={profileRef}>
+            <FontAwesomeIcon
+              icon={faCircle}
+              className="text-3xl text-white cursor-pointer sm:text-5xl"
+              onClick={toggleDropdown}
+            />
+            {isDropdownOpen && <ProfileDropdown onClose={toggleDropdown} />}
+          </div>
         </div>
       </div>
     </div>
-
-
-
   )
 }
 
-export default index
+export default Index
