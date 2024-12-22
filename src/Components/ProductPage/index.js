@@ -6,8 +6,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 // ----- AOS Animation ----- //
 
-// import AOS from 'aos';
-// import 'aos/dist/aos.css';
+
 import FeaturesSection from '../HomePage/Banners';
 
 

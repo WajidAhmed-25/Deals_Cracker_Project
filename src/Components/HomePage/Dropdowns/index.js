@@ -31,6 +31,10 @@ const Index = () => {
     setOpenSubmenu(null);
   };
 
+  const hasSubmenu = (link) => {
+    return mainLinks[link]?.submenu && Object.keys(mainLinks[link].submenu).length > 0;
+  };
+  
   const toggleSubmenu = (submenu) => {
     setOpenSubmenu(openSubmenu === submenu ? null : submenu);
   };
@@ -128,22 +132,8 @@ const Index = () => {
         "Option 3": "/vendors/option3",
       },
     },
-    "Blog": {
-      path: "/blog",
-      submenu: {
-        "Option 1": "/blog/option1",
-        "Option 2": "/blog/option2",
-        "Option 3": "/blog/option3",
-      },
-    },
-    "Contact Us": {
-      path: "/contact",
-      submenu: {
-        "Option 1": "/contact/option1",
-        "Option 2": "/contact/option2",
-        "Option 3": "/contact/option3",
-      },
-    },
+    "About": "/about",
+    "Contact": "/contact",
   };
 
   return (
@@ -207,15 +197,21 @@ const Index = () => {
                 <Link to={typeof value === 'string' ? value : value.path}>
                   {link}
                 </Link>
-                {link !== "Home" && (
+                {/* {link !== "Home" && link !== "About" && link !== "Contact" && (
                   <FontAwesomeIcon
                     icon={faChevronDown}
                     className="ml-1 text-sm"
                   />
-                )}
+                )} */}
+                {hasSubmenu(link) && (
+  <FontAwesomeIcon
+    icon={faChevronDown}
+    className="ml-1 text-sm"
+  />
+)}
               </button>
               {/* Dropdown */}
-              {openMenu === link && link !== "Home" && (
+              {openMenu === link && link !== "Home" && link !== "About" && link !== "Contact" && (
                 <div className="absolute left-0 w-48 mt-2 bg-white border rounded-lg shadow-lg z-[9999]">
                   <ul>
                     {Object.entries(value.submenu).map(([subItem, subPath]) => (

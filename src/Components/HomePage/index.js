@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import Slider from './SwipperSliderMain/index';
 import BrandSlider from './BrandsSlider/index';
 import Categories from './Categories/index'
+import DualPlanetsWithImages from '../Animations';
 import DealsSlider from './DealsSlider';
 import ProductCards from './ProductCards/index';
 import CardsShufftler from './CardsShufftler/index';
@@ -92,6 +93,7 @@ const Index = () => {
       >
         <motion.div variants={staggerItem}>
          <Categories/>
+         {/* <DualPlanetsWithImages/> */}
         </motion.div>
       </motion.div>
 
