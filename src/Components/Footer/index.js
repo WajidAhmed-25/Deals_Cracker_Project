@@ -64,7 +64,7 @@ const Footer = () => {
 
   return (
     <div>
-      <section className="pt-16 pb-7 ThemeColor">
+      <section className="pt-16 pb-7 ThemeColor" >
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           {/* Logo and Social Icons */}
           <div className="flex items-center justify-between gap-8 border-b border-white pb-14">

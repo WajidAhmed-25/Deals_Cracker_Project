@@ -52,7 +52,7 @@ const Index = () => {
   };
 
   return (
-    <div className="w-full p-2 ThemeColor">
+    <div className="w-full p-2 ThemeColor" data-aos="fade-down" data-aos-delay="200">
       <div className="flex flex-col items-center justify-between sm:flex-row bg-ThemeColor rounded-xl">
         {/* First Section: Logo */}
         <div className="flex items-center justify-center sm:justify-start w-full sm:w-[25%] px-4 sm:px-12 py-4 sm:py-0">

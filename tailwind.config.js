@@ -9,7 +9,7 @@ module.exports = {
         ThemeColor: "#237da0f8", 
       },
        animation: {
-        scroll: 'scroll 25s linear infinite',
+        scroll: 'scroll 40s linear infinite',
       },
       keyframes: {
         scroll: {

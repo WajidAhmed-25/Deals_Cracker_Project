@@ -7,11 +7,10 @@ import 'aos/dist/aos.css';
 import LoginForm from './Components/Login/index';
 import RegisterForm from './Components/Signup/index';
 import Homepage from './Components/HomePage/index';
+
+
+
 import ProductPage from './Components/ProductPage/index'
-
-import ProfileUrl from './Components/Navbar/ProfileIcon/index'
-
-
 
 
 // Imports Conditional //
@@ -19,6 +18,7 @@ import ProfileUrl from './Components/Navbar/ProfileIcon/index'
 import Navbar from './Components/Navbar/index'
 import Footer from './Components/Footer/index'
 import Dropdown from './Components/HomePage/Dropdowns/index'
+import { CalendarSearch } from 'lucide-react';
 
 // Components //
 function Layout() {
@@ -39,9 +39,9 @@ function Layout() {
 
         {/* HomePage */}
         <Route path="/homepage" element={<Homepage />} />
-        <Route path='/product-page' element={<ProductPage/>}/>
+   
 
-        <Route path="/profile" element={<ProfileUrl/>}/>
+        <Route path="/pp" element={<ProductPage/>}/>
        
       </Routes>
       {!isAuthPage && <Footer />}
@@ -55,9 +55,11 @@ function App() {
   }, []);
 
   return (
+    <div className='root'>
     <Router>
       <Layout />
     </Router>
+    </div>
   );
 }
 
