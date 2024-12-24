@@ -24,6 +24,7 @@ import Footer from './Components/Footer/index'
 import Dropdown from './Components/HomePage/Dropdowns/index'
 import { CalendarSearch, Contact } from 'lucide-react';
 
+import Popup from './Components/ChoicePopup/index'
 import Animation from './Components/Animations/index'
 
 // Components //
@@ -44,7 +45,7 @@ function Layout() {
         <Route path="/register" element={<RegisterForm />} />
 
         {/* HomePage */}
-        <Route path="/homepage" element={<Homepage />} />
+        <Route path="/homepage_Without_popup" element={<Homepage />} />
         
 
         <Route path="/about" element={<About/>}/>
@@ -54,7 +55,9 @@ function Layout() {
 
         <Route path="/pp" element={<ProductPage/>}/>
 
-        {/* <Route path="/animation" element={<Animation/>}/> */}
+        <Route path="/animation" element={<Animation/>}/>
+
+        <Route path="/homepage" element={<Popup/>}/>
        
       </Routes>
       {!isAuthPage && <Footer />}

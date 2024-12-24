@@ -10,6 +10,7 @@ module.exports = {
       },
        animation: {
         scroll: 'scroll 40s linear infinite',
+        "spin-slow": "spin-slow 15s linear infinite",
       },
       keyframes: {
         scroll: {

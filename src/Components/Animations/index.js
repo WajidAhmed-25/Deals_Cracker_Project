@@ -1,156 +1,149 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import React from 'react';
 
-const DualPlanetsWithImages = () => {
-  const imagesShape1 = [
-    "https://tse4.mm.bing.net/th?id=OIP.PikUdeXdPP5f3FAwKZYtlQHaJQ&pid=Api&P=0&h=220",
-    "https://tse4.mm.bing.net/th?id=OIP.PikUdeXdPP5f3FAwKZYtlQHaJQ&pid=Api&P=0&h=220",
-    "https://tse4.mm.bing.net/th?id=OIP.PikUdeXdPP5f3FAwKZYtlQHaJQ&pid=Api&P=0&h=220",
-    "https://tse4.mm.bing.net/th?id=OIP.PikUdeXdPP5f3FAwKZYtlQHaJQ&pid=Api&P=0&h=220",
-    "https://via.placeholder.com/100x100?text=5",
-  ];
+import clothes_alkaram from './images/Clothing/alkaram_studio.png'
+import clothes_dhanak from './images/Clothing/dhanak.png';
+import clothes_j from './images/Clothing/J(junaid_jamshed).png';
+import clothes_khaddi from './images/Clothing/khaddi.png';
+import clothes_outfitters from './images/Clothing/outfitters.png';
+import clothes_saya from './images/Clothing/saya.png';
+import clothes_zeen from './images/Clothing/zeen.png';
 
-  const imagesShape2 = [
-    "https://via.placeholder.com/100x100?text=A",
-    "https://tse4.mm.bing.net/th?id=OIP.PikUdeXdPP5f3FAwKZYtlQHaJQ&pid=Api&P=0&h=220",
-    "https://tse4.mm.bing.net/th?id=OIP.PikUdeXdPP5f3FAwKZYtlQHaJQ&pid=Api&P=0&h=220",
-    "https://tse4.mm.bing.net/th?id=OIP.PikUdeXdPP5f3FAwKZYtlQHaJQ&pid=Api&P=0&h=220",
-    "https://tse4.mm.bing.net/th?id=OIP.PikUdeXdPP5f3FAwKZYtlQHaJQ&pid=Api&P=0&h=220",
-  ];
 
-  const [currentPattern, setCurrentPattern] = useState(0);
 
-  const animationPatterns = [
-    { entry: { x: -200, y: 0 }, exit: { x: 200, y: 0 } },
-    { entry: { x: 200, y: 0 }, exit: { x: -200, y: 0 } },
-    { entry: { x: 0, y: -200 }, exit: { x: 0, y: 200 } },
-    { entry: { x: 0, y: 200 }, exit: { x: 0, y: -200 } },
-    { entry: { x: -200, y: -200 }, exit: { x: 200, y: 200 } },
-    { entry: { x: 200, y: -200 }, exit: { x: -200, y: 200 } },
-  ];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentPattern((prev) => (prev + 1) % animationPatterns.length);
-    }, Math.max(imagesShape1.length, imagesShape2.length) * 500);
+import food_angeethi from './images/Food/angeethi.png';
+import food_delizia from './images/Food/delizia.png';
+import food_foodsinn from './images/Food/foodsinn.png';
+import food_ginsoy from './images/Food/ginsoy.png';
+import food_hotnspicy from './images/Food/hotnspicy.png';
+import food_kfc from './images/Food/kababjees_fried_chicken.png';
+import food_karachibroast from './images/Food/karachi_broast.png';
+import food_kaybees from './images/Food/kaybees.png';
+import food_pp from './images/Food/pizza_point.png';
+import food_tooso from './images/Food/tosso.png';
+import food_uk from './images/Food/united_king.png';
 
-    return () => clearInterval(interval);
-  }, [imagesShape1.length, imagesShape2.length]);
 
-  const Trapezoid = ({ images, offset = 0, shapeIndex = 0, heading = "" }) => {
-    const shapes = [
-      "polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%)",
-      "polygon(23% 100%, 0 0, 100% 0, 75% 100%)",
-    ];
 
-    return (
-      <div className="relative mx-8">
-        <div className="absolute inset-0">
-          {images.map((imageUrl, index) => (
-            <motion.div
-              key={`${index}-${currentPattern}-${offset}`}
-              className="absolute"
-              style={{
-                left: "50%",
-                top: "50%",
-                transform: "translate(-50%, -50%)",
-              }}
-              initial={{
-                x: animationPatterns[currentPattern].entry.x,
-                y: animationPatterns[currentPattern].entry.y,
-                opacity: 0,
-                scale: 0.5,
-              }}
-              animate={{
-                x: [
-                  animationPatterns[currentPattern].entry.x,
-                  0,
-                  animationPatterns[currentPattern].exit.x,
-                ],
-                y: [
-                  animationPatterns[currentPattern].entry.y,
-                  0,
-                  animationPatterns[currentPattern].exit.y,
-                ],
-                opacity: [0, 1, 0],
-                scale: [0.5, 1, 0.8],
-              }}
-              transition={{
-                duration: 3,
-                delay: index * 0.5 + offset,
-                repeat: Infinity,
-                repeatDelay: images.length * 0.5,
-                times: [0, 0.5, 1],
-                ease: "easeInOut",
-              }}
-            >
-              <img
-                src={imageUrl}
-                alt={`Animation ${index}`}
-                className="object-cover w-20 h-20 rounded-full"
-              />
-            </motion.div>
-          ))}
+
+
+
+
+const RotatingIconsCircle = ({ icons, centerImage, label, categoryName, textClass, hasStroke }) => {
+  return (
+    <div>
+      <div className="relative flex items-center justify-center w-96 h-96">
+        {/* Rotating container for all icons */}
+        <div className="absolute w-full h-full animate-[spin_20s_linear_infinite]">
+          {icons.map((icon, index) => {
+            const degree = (360 / icons.length) * index;
+            return (
+              <div
+                key={icon.label}
+                className="absolute flex items-center justify-center w-12 h-12 rounded-full"
+                style={{
+                  top: '50%',
+                  left: '50%',
+                  transform: `rotate(${degree}deg) translate(140px) rotate(-${degree}deg)`,
+                }}
+              >
+                <div
+                  className={`w-full h-full rounded-full ${icon.color} flex items-center justify-center border-[#237da0f8] p-[1px]`}
+                >
+                  <img
+                    src={icon.imageUrl}
+                    alt={icon.label}
+                    className="object-cover w-full h-full rounded-full"
+                  />
+                </div>
+              </div>
+            );
+          })}
         </div>
 
-        <div className="relative z-10">
-          <div className="absolute inset-0 -m-20">
-            <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-white" />
-            <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white" />
+        {/* Center logo - stays static */}
+        <div className="absolute inset-0 z-10 flex items-center justify-center m-auto overflow-hidden bg-white rounded-full shadow-lg h-36 w-36">
+          <div className="w-full h-full overflow-hidden rounded-full">
+            <img
+              src={centerImage}
+              alt={`${label} Center Logo`}
+              className="object-cover w-full h-full"
+            />
           </div>
-
-          <motion.div
-            className="shadow-xl w-80 h-80 bg-gradient-to-r from-[#529ebc] to-ThemeColor"
-            style={{
-              clipPath: shapes[shapeIndex],
-            }}
-            initial={{ scale: 0.9 }}
-            animate={{
-              scale: [1, 0.95, 1],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-            }}
-          />
-
-
-          <h2 className="absolute text-4xl font-bold text-center text-white transform -translate-x-1/2 bottom-32 left-1/2">
-            {heading}
-          </h2>
-
-   
-
-
-          
         </div>
       </div>
-    );
-  };
+ 
+      <div className='pt-8 mb-6 text-center'>
+        <p 
+          className={textClass}
+          style={hasStroke ? { WebkitTextStroke: '2px #237da0f8' } : {}}
+        > 
+          {categoryName}
+        </p>
+      </div>
+   </div>
+  );
+};
+
+
+
+
+const DualRotatingCircles = () => {
+  // First circle data
+  const firstCircleIcons = [
+    { color: 'bg-white', label: 'Vimeo', imageUrl:clothes_alkaram  },
+    { color: 'bg-white', label: 'Adobe', imageUrl:  clothes_dhanak},
+    { color: 'bg-white', label: 'Reddit', imageUrl: clothes_j },
+    { color: 'bg-white', label: 'Salesforce', imageUrl: clothes_khaddi },
+    { color: 'bg-white', label: 'Patreon', imageUrl: clothes_outfitters },
+    { color: 'bg-white', label: 'Facebook', imageUrl: clothes_saya },
+    { color: 'bg-white', label: 'YouTube', imageUrl: clothes_zeen},
+  ];
+
+
+
+
+  
+
+
+  // Second circle data
+  const secondCircleIcons = [
+    { color: 'bg-white', label: 'Spotify', imageUrl: food_angeethi },
+    { color: 'bg-white', label: 'Snapchat', imageUrl:food_delizia },
+    { color: 'bg-white', label: 'Discord', imageUrl: food_foodsinn },
+    { color: 'bg-white', label: 'Twitch', imageUrl: food_ginsoy },
+    { color: 'bg-white', label: 'Pinterest', imageUrl: food_hotnspicy },
+    { color: 'bg-white', label: 'Twitter', imageUrl: food_kfc },
+    { color: 'bg-white', label: 'Instagram', imageUrl: food_karachibroast },
+    { color: 'bg-white', label: 'Instagram', imageUrl: food_kaybees },
+    { color: 'bg-white', label: 'Instagram', imageUrl: food_tooso },
+    { color: 'bg-white', label: 'Instagram', imageUrl: food_pp },
+    { color: 'bg-white', label: 'Instagram', imageUrl: food_uk },
+  ];
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen overflow-hidden bg-white">
-
-<div className='w-full mb-24 text-xl text-center '>
-        <p className='text-4xl font-bold fontColor'>Select your Desired Choice</p>
-       </div>
-        
-      <div className="flex flex-row items-center justify-center gap-20">
-        <Trapezoid
-          images={imagesShape1}
-          offset={0}
-          shapeIndex={0}
-          heading="Food"
-        />
-        <Trapezoid
-          images={imagesShape2}
-          offset={1}
-          shapeIndex={1}
-          heading="Clothing"
-        />
-      </div>
+    <div className="flex flex-row items-center justify-center gap-32">
+      <RotatingIconsCircle 
+        icons={firstCircleIcons}
+        centerImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIVJRDshCZmeOyCF2yF4ucaw3s7W-khnbYIQ&s"
+        label="First"
+        categoryName="FOOD"
+        textClass="text-[#237da0f8] text-7xl font-black tracking-wide"
+        hasStroke={false}
+      />
+      <p className="text-5xl font-bold text-transparent stroke-2 bg-clip-text stroke-[#237da0f8]" style={{ WebkitTextStroke: '2px #237da0f8' }}>
+        {/* OR */}
+      </p>
+      <RotatingIconsCircle 
+        icons={secondCircleIcons}
+        centerImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIVJRDshCZmeOyCF2yF4ucaw3s7W-khnbYIQ&s"
+        label="Second"
+        categoryName="CLOTHING"
+        textClass="font-bold text-transparent stroke-2 text-7xl bg-clip-text stroke-[#237da0f8]"
+        hasStroke={true}
+      />
     </div>
   );
 };
 
-export default DualPlanetsWithImages;
+export default DualRotatingCircles;
