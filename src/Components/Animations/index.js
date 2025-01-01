@@ -1,5 +1,7 @@
 import React from 'react';
 
+
+import clothes_center from './images/Clothing/cloth_center-modified.png'
 import clothes_alkaram from './images/Clothing/alkaram_studio.png'
 import clothes_dhanak from './images/Clothing/dhanak.png';
 import clothes_j from './images/Clothing/J(junaid_jamshed).png';
@@ -10,7 +12,7 @@ import clothes_zeen from './images/Clothing/zeen.png';
 
 
 
-
+import food_center from './images/Food/food_center.png';
 import food_angeethi from './images/Food/angeethi.png';
 import food_delizia from './images/Food/delizia.png';
 import food_foodsinn from './images/Food/foodsinn.png';
@@ -40,7 +42,7 @@ const RotatingIconsCircle = ({ icons, centerImage, label, categoryName, textClas
             return (
               <div
                 key={icon.label}
-                className="absolute flex items-center justify-center w-12 h-12 rounded-full"
+                className="absolute flex items-center justify-center w-16 h-16 rounded-full"
                 style={{
                   top: '50%',
                   left: '50%',
@@ -62,7 +64,7 @@ const RotatingIconsCircle = ({ icons, centerImage, label, categoryName, textClas
         </div>
 
         {/* Center logo - stays static */}
-        <div className="absolute inset-0 z-10 flex items-center justify-center m-auto overflow-hidden bg-white rounded-full shadow-lg h-36 w-36">
+        <div className="absolute inset-0 z-10 flex items-center justify-center w-40 h-40 m-auto overflow-hidden bg-white rounded-full shadow-lg">
           <div className="w-full h-full overflow-hidden rounded-full">
             <img
               src={centerImage}
@@ -102,30 +104,26 @@ const DualRotatingCircles = () => {
 
 
 
-
-  
-
-
   // Second circle data
   const secondCircleIcons = [
     { color: 'bg-white', label: 'Spotify', imageUrl: food_angeethi },
     { color: 'bg-white', label: 'Snapchat', imageUrl:food_delizia },
     { color: 'bg-white', label: 'Discord', imageUrl: food_foodsinn },
-    { color: 'bg-white', label: 'Twitch', imageUrl: food_ginsoy },
-    { color: 'bg-white', label: 'Pinterest', imageUrl: food_hotnspicy },
-    { color: 'bg-white', label: 'Twitter', imageUrl: food_kfc },
+    // { color: 'bg-white', label: 'Twitch', imageUrl: food_ginsoy },
+    // { color: 'bg-white', label: 'Pinterest', imageUrl: food_hotnspicy },
+    // { color: 'bg-white', label: 'Twitter', imageUrl: food_kfc },
     { color: 'bg-white', label: 'Instagram', imageUrl: food_karachibroast },
-    { color: 'bg-white', label: 'Instagram', imageUrl: food_kaybees },
+    // { color: 'bg-white', label: 'Instagram', imageUrl: food_kaybees },
     { color: 'bg-white', label: 'Instagram', imageUrl: food_tooso },
     { color: 'bg-white', label: 'Instagram', imageUrl: food_pp },
     { color: 'bg-white', label: 'Instagram', imageUrl: food_uk },
   ];
 
   return (
-    <div className="flex flex-row items-center justify-center gap-32">
+    <div className="flex flex-row items-center justify-center gap-32 mt-64">
       <RotatingIconsCircle 
-        icons={firstCircleIcons}
-        centerImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIVJRDshCZmeOyCF2yF4ucaw3s7W-khnbYIQ&s"
+        icons={secondCircleIcons}
+        centerImage={food_center}
         label="First"
         categoryName="FOOD"
         textClass="text-[#237da0f8] text-7xl font-black tracking-wide"
@@ -135,8 +133,8 @@ const DualRotatingCircles = () => {
         {/* OR */}
       </p>
       <RotatingIconsCircle 
-        icons={secondCircleIcons}
-        centerImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIVJRDshCZmeOyCF2yF4ucaw3s7W-khnbYIQ&s"
+        icons={firstCircleIcons}
+        centerImage={clothes_center}
         label="Second"
         categoryName="CLOTHING"
         textClass="font-bold text-transparent stroke-2 text-7xl bg-clip-text stroke-[#237da0f8]"

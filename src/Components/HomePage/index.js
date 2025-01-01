@@ -18,6 +18,7 @@ import OrganicFoodGrid from './MovingCards';
 import ProductShowcase from './FourProductsDiv';
 import FeaturesSection from './Banners';
 import ScrollToTop from '../ScrollArrow';
+import Animation from '../Animations/index'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -60,7 +61,7 @@ const Index = () => {
   };
 
   return (
-    <div className='bg-white'>
+    <div className='relative w-full -z-10'>
 
       <motion.div
         initial="hidden"
@@ -72,7 +73,7 @@ const Index = () => {
           <Slider />
         </motion.div>
       </motion.div>
-
+   
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -92,8 +93,7 @@ const Index = () => {
         variants={staggerContainer}
       >
         <motion.div variants={staggerItem}>
-         <Categories/>
-         {/* <DualPlanetsWithImages/> */}
+       <Animation/>
         </motion.div>
       </motion.div>
 

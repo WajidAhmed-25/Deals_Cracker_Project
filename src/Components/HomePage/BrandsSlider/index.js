@@ -36,7 +36,7 @@ const Index = () => {
 
 
   return (
-    <div className="relative w-full mt-12 overflow-hidden">
+    <div className="absolute w-full mt-12 overflow-hidden ">
       {/* Outer container with fixed width */}
       <div className="flex w-full">
         {/* Scrolling container */}
