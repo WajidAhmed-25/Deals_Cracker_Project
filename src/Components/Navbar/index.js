@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faCircle, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faCircle, faShoppingCart, faSignIn, faSignOut } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 import ProfileDropdown from './ProfileIcon/index';
 import WishlistPage from './Whishlist/index';
@@ -12,6 +14,8 @@ const Index = () => {
   // Create refs for the dropdown containers
   const wishlistRef = useRef(null);
   const profileRef = useRef(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Function to handle clicks outside
@@ -49,6 +53,11 @@ const Index = () => {
     if (isWishlistOpen) {
       setWishlistOpen(false);
     }
+  };
+
+  const handleLogout = () => {
+    Cookies.remove("dealscracker-token"); // Remove the token from cookies
+    navigate("/"); // Navigate to the homepage
   };
 
   return (
@@ -104,6 +113,20 @@ const Index = () => {
               onClick={toggleDropdown}
             />
             {isDropdownOpen && <ProfileDropdown onClose={toggleDropdown} />}
+          </div>
+          <div>
+            <button
+                onClick={handleLogout}
+                className="flex items-center justify-center w-32 h-10 rounded-full font-bold bg-white border border-[#267fa2da] shadow-sm hover:bg-[#2d789d] hover:text-white group transition-colors duration-300"
+              >
+                <span className="text-[#2d789d] group-hover:text-white transition-colors duration-300">
+                  Logout
+                </span>
+                <FontAwesomeIcon
+                  icon={faSignOut}
+                  className="ml-2 w-5 h-5 text-[#2d789d] group-hover:text-white transition-colors duration-300"
+                />
+              </button>
           </div>
         </div>
       </div>
