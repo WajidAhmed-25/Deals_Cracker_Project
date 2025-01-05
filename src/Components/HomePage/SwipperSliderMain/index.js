@@ -52,7 +52,7 @@ useEffect(() => {
 }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <>
     <Swiper
       spaceBetween={30}
@@ -73,7 +73,7 @@ useEffect(() => {
           <img 
             src={imageUrl} 
             alt={`Slide ${index + 1}`}
-            className="object-cover w-full h-full"
+            className="object-cover w-full h-full "
           />
         </SwiperSlide>
       ))}

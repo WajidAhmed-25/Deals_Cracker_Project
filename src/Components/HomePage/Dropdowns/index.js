@@ -212,7 +212,7 @@ const Index = () => {
               </button>
               {/* Dropdown */}
               {openMenu === link && link !== "Home" && link !== "About" && link !== "Contact" && (
-                <div className="absolute left-0 w-48 mt-2 bg-white border rounded-lg shadow-lg z-[9999]">
+                <div className="absolute left-0 w-48 mt-2 bg-white border rounded-lg shadow-lg z-[99900000]">
                   <ul>
                     {Object.entries(value.submenu).map(([subItem, subPath]) => (
                       <li

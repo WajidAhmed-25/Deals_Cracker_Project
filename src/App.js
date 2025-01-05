@@ -12,8 +12,9 @@ import ContactPage from './Components/Contact/index';
 
 
 
-import ProductPage from './Components/ProductPage/index'
+import ProductPage from './Components/ProductPage/index';
 
+import ProfilePage from './Components/ProfilePage/index';
 
 
 
@@ -64,6 +65,8 @@ function Layout() {
         <Route path="/animation" element={<Animation/>}/>
 
         <Route path="/homepage" element={<Popup/>}/>
+       
+<Route path='/profile-page' element={<ProfilePage/>}/>
        
       </Routes>
       {!isAuthPage && <Footer />}
