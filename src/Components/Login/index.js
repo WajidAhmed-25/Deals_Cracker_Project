@@ -51,17 +51,25 @@ const Index = () => {
         email,
         password,
       });
-      toast.success("Login successful!");
-
+      
       // Store token in cookies
       Cookies.set("dealscracker-token", response.data.access_token, {
         secure: true,
         sameSite: "strict",
       });
+      if(response.data.detail === "Please complete your profile before logging in."){
 
-      setTimeout(() => {
-        navigate("/homepage_Without_popup");
-      }, 1000);
+        toast.success("Please complete your profile before logging in.");
+        setTimeout(() => {
+          navigate("/createProfile");
+        }, 1000);
+      }
+      else{
+        toast.success("Login successful!");
+        setTimeout(() => {
+          navigate("/homepage_Without_popup");
+        }, 1000);
+      }
     } catch (error) {
       toast.error(error.response?.data?.detail || "Login failed.");
     }

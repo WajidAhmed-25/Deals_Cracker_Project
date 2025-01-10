@@ -55,10 +55,10 @@ const Index = () => {
     }
   };
 
-  const handleLogout = () => {
-    Cookies.remove("dealscracker-token"); // Remove the token from cookies
-    navigate("/"); // Navigate to the homepage
-  };
+  // const handleLogout = () => {
+  //   Cookies.remove("dealscracker-token"); // Remove the token from cookies
+  //   navigate("/"); // Navigate to the homepage
+  // };
 
   return (
     <div className="w-full p-2 ThemeColor" data-aos="fade-down" data-aos-delay="200">
@@ -114,7 +114,7 @@ const Index = () => {
             />
             {isDropdownOpen && <ProfileDropdown onClose={toggleDropdown} />}
           </div>
-          <div>
+          {/* <div>
             <button
                 onClick={handleLogout}
                 className="flex items-center justify-center w-32 h-10 rounded-full font-bold bg-white border border-[#267fa2da] shadow-sm hover:bg-[#2d789d] hover:text-white group transition-colors duration-300"
@@ -127,7 +127,7 @@ const Index = () => {
                   className="ml-2 w-5 h-5 text-[#2d789d] group-hover:text-white transition-colors duration-300"
                 />
               </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

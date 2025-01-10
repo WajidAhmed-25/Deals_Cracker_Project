@@ -30,13 +30,14 @@ import Animation from './Components/Animations/index'
 import ForgotPassword from './Components/ForgetPassword';
 import OTPVerification from './Components/OTPVerification';
 import UpdatePassword from './Components/UpdatePassword';
+import CreateProfile from './Components/CreateProfile';
 
 // Components //
 function Layout() {
   const location = useLocation();
 
   // Check if the current route is login or register
-  const isAuthPage = location.pathname === '/' || location.pathname === '/register' || location.pathname === '/forgetPassword' || location.pathname === '/otpVerification' || location.pathname === '/updatePassword';
+  const isAuthPage = location.pathname === '/' || location.pathname === '/register' || location.pathname === '/forgetPassword' || location.pathname === '/otpVerification' || location.pathname === '/updatePassword' || location.pathname === '/createProfile';
 
   return (
     <>
@@ -65,6 +66,7 @@ function Layout() {
         <Route path="/animation" element={<Animation/>}/>
 
         <Route path="/homepage" element={<Popup/>}/>
+        <Route path="/createProfile" element={<CreateProfile/>}/>
        
 <Route path='/profile-page' element={<ProfilePage/>}/>
        

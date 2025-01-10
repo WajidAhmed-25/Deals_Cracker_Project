@@ -1,8 +1,16 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const ProfileDropdown = ({ onClose }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    Cookies.remove("dealscracker-token"); // Remove the token from cookies
+    navigate("/"); // Navigate to the homepage
+  };
   return (
     <div className="absolute z-[9999] right-0 w-64 p-4 bg-white border border-gray-200 rounded-lg shadow-lg top-24 sm:right-12 ">
       {/* Header */}
@@ -29,7 +37,7 @@ const ProfileDropdown = ({ onClose }) => {
         </button>
         <button
           className="flex items-center w-full p-2 mt-2 text-[#237da0f8] rounded hover:bg-gray-100"
-          onClick={() => alert("Logout clicked")}
+          onClick={handleLogout}
         >
           <FontAwesomeIcon icon={faSignOutAlt} className="mr-2 text-[#237da0f8]" />
           Logout
