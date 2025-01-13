@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,6 +7,7 @@ import {
   faChevronDown,
   faPhoneAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import Cookies from "js-cookie";
 
 
 
@@ -19,6 +20,21 @@ const Index = () => {
   const [openMenu, setOpenMenu] = useState(null);
   const [openSubmenu, setOpenSubmenu] = useState(null);
   const location = useLocation();
+  const [category, setCategory] = useState("both"); // Default category is "both"
+
+  useEffect(() => {
+    // Check for existing dealscracker-category in cookies when component mounts
+    const cookieCategory = Cookies.get("dealscracker-category");
+    if (cookieCategory) {
+      setCategory(cookieCategory); // Set category based on cookie value
+    }
+  }, []);
+
+  const handleCategoryToggle = (newCategory) => {
+    setCategory(newCategory);
+    Cookies.set("dealscracker-category", newCategory); // Set the new category in cookies
+    window.location.reload(); // Refresh the page after category change
+  };
 
   const handleWhatsAppClick = () => {
     const phoneNumber = "+923133960313";
@@ -229,14 +245,24 @@ const Index = () => {
           ))}
         </ul>
 
-        {/* Contact Section */}
-        <div className="hidden px-4 py-2 text-white rounded-full md:block">
+        <div className="flex items-center space-x-4">
           <button
-            onClick={handleWhatsAppClick}
-            className="flex items-center justify-center w-full px-4 py-2 text-white rounded-full bg-[#237da0f8] hover:bg-[#1b5c80] transition-colors duration-300"
+            onClick={() => handleCategoryToggle("both")}
+            className={`px-4 py-2 rounded-full ${category === "both" ? "bg-[#237da0f8] text-white" : "bg-white text-gray-700 border"}`}
           >
-            <FontAwesomeIcon icon={faPhoneAlt} className="mr-2" />
-            01-234 567 890
+            Both
+          </button>
+          <button
+            onClick={() => handleCategoryToggle("clothing")}
+            className={`px-4 py-2 rounded-full ${category === "clothing" ? "bg-[#237da0f8] text-white" : "bg-white text-gray-700 border"}`}
+          >
+            Clothing
+          </button>
+          <button
+            onClick={() => handleCategoryToggle("food")}
+            className={`px-4 py-2 rounded-full ${category === "food" ? "bg-[#237da0f8] text-white" : "bg-white text-gray-700 border"}`}
+          >
+            Food
           </button>
         </div>
 

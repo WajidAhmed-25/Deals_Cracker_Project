@@ -1,74 +1,146 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
+
+// Importing images
+import clothes_center from './images/Clothing/cloth_center-modified.png';
+import clothes_alkaram from './images/Clothing/alkaram_studio.png';
+import clothes_dhanak from './images/Clothing/dhanak.png';
+import clothes_j from './images/Clothing/J(junaid_jamshed).png';
+import clothes_khaddi from './images/Clothing/khaddi.png';
+import clothes_outfitters from './images/Clothing/outfitters.png';
+import clothes_saya from './images/Clothing/saya.png';
+import clothes_zeen from './images/Clothing/zeen.png';
+
+import food_center from './images/Food/food_center.png';
+import food_angeethi from './images/Food/angeethi.png';
+import food_delizia from './images/Food/delizia.png';
+import food_foodsinn from './images/Food/foodsinn.png';
+import food_ginsoy from './images/Food/ginsoy.png';
+import food_hotnspicy from './images/Food/hotnspicy.png';
+import food_kfc from './images/Food/kababjees_fried_chicken.png';
+import food_karachibroast from './images/Food/karachi_broast.png';
+import food_kaybees from './images/Food/kaybees.png';
+import food_pp from './images/Food/pizza_point.png';
+import food_tooso from './images/Food/tosso.png';
+import food_uk from './images/Food/united_king.png';
+
+const localUrl = process.env.REACT_APP_API_URL;
 
 const Index = () => {
-  const [activeCategory, setActiveCategory] = useState('Fruits');
+  const [activeCategory, setActiveCategory] = useState('clothing'); // Default to 'clothing'
+  const [trendingBrands, setTrendingBrands] = useState([]);
 
-  const categories = [
-    'All',
-    'Kurta Shalwar',
-    'Tie & Dye Suit',
-    'Juices',
-    'Vegetables',
-    'Snacks',
-    'Organic Foods'
-  ];
+  useEffect(() => {
+    const category = Cookies.get('dealscracker-category') || 'clothing'; // Get category from cookies (default to 'clothing')
+    setActiveCategory(category);
+    fetchTrendingBrands(category);
+  }, []);
 
-  // Sample product data - you can replace with your actual data
-  const products = {
-    All: [
-      { id: 1, image: 'http://www.muraqshman.com/cdn/shop/products/black-on-navy-blue-3pc-161808.jpg?v=1689242954&width=2048', badge: '' },
-      { id: 2, image: 'https://cdn.shopify.com/s/files/1/0549/0730/6073/products/Sahiba_Cotton_Embroidered_3-Piece_Kurta_Set_-_02_900x.jpg?v=1678716364', badge: '' },
-      { id: 3, image: 'https://www.stylesgap.com/wp-content/uploads/2016/05/Latest-Eid-Men-Kurta-Shalwar-Kameez-Designs-Collection-2017-2018-5.jpeg', badge: 'Sale 50%' },
-      { id: 4, image: 'https://i.pinimg.com/originals/46/10/19/4610198399397f463cdbffa71e840af2.png', badge: 'New' },
-    ],
-    Fruits: [
-      { id: 5, image: 'https://cdn.shopify.com/s/files/1/0549/0730/6073/products/Sahiba_Cotton_Embroidered_3-Piece_Kurta_Set_-_02_900x.jpg?v=1678716364', badge: 'New' },
-      { id: 6, image: 'https://i.pinimg.com/originals/46/10/19/4610198399397f463cdbffa71e840af2.png', badge: 'Sale 50%' },
-    ],
-    // Add more category-specific products as needed
+  const fetchTrendingBrands = async (category) => {
+    try {
+      const response = await fetch(`${localUrl}/clothingAndFood/getTopTrendingBrands?category=${category}`);
+      const data = await response.json();
+      setTrendingBrands(data);
+    } catch (error) {
+      console.error('Error fetching trending brands:', error);
+    }
   };
 
-  const displayProducts = products[activeCategory] || products.All;
+  const getBrandImage = (brandName, category) => {
+    if (category === 'clothing' || category === 'both') {  // Handle both clothing and 'both' categories
+      switch (brandName) {
+        case 'Alkaram':
+          return clothes_alkaram;
+        case 'J.':
+          return clothes_j;
+        case 'Saya':
+          return clothes_saya;
+        case 'Khaadi':
+          return clothes_khaddi;
+        case 'Zeen':
+          return clothes_zeen;
+        case 'Dhanak':
+          return clothes_dhanak;
+        case 'Outfitters':
+          return clothes_outfitters;
+        default:
+          return clothes_center; // Default image for clothing
+      }
+    } 
+    if (category === 'food' || category === 'both') {  // Handle both food and 'both' categories
+      switch (brandName) {
+        case 'Kababjees Fried Chicken':
+          return food_kfc;
+        case 'Angeethi':
+          return food_angeethi;
+        case 'Delizia':
+          return food_delizia;
+        case 'Foods Inn':
+          return food_foodsinn;
+        case 'Ginsoy':
+          return food_ginsoy;
+        case 'Hot n Spicy':
+          return food_hotnspicy;
+        case 'Karachi Broast':
+          return food_karachibroast;
+        case 'Kaybees':
+          return food_kaybees;
+        case 'Pizza Point':
+          return food_pp;
+        case 'Tooso':
+          return food_tooso;
+        case 'United King':
+          return food_uk;
+        default:
+          return food_center; // Default image for food
+      }
+    }
+  
+    return '/path/to/default_image.png'; // Default image for unknown categories
+  };
+  
 
   return (
     <div className="container px-4 py-8 mx-auto">
       {/* Header */}
       <div className="flex flex-col items-center justify-between mb-8 md:flex-row">
-        <h2 className="mb-4 text-3xl font-bold md:mb-0 text-[#237da0f8]">Recommended For You</h2>
-        
+        <h2 className="mb-4 text-3xl font-bold md:mb-0 text-[#237da0f8]">Top Trending Brands</h2>
+
         {/* Category Buttons */}
         <div className="flex flex-wrap justify-center gap-2">
-          {categories.map((category) => (
+          {['clothing', 'food', 'both'].map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
               className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors
-                ${activeCategory === category 
-                  ? 'bg-[#237da0f8] text-white' 
+                ${activeCategory === category
+                  ? 'bg-[#237da0f8] text-white'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
             >
-              {category}
+              {category.charAt(0).toUpperCase() + category.slice(1)}
             </button>
           ))}
         </div>
       </div>
 
-      {/* Product Grid */}
+      {/* Brand Grid */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {displayProducts.map((product) => (
-          <div key={product.id} className="relative p-4 bg-white rounded-lg shadow-sm">
-            {product.badge && (
-              <span className={`absolute top-2 right-2 px-2 py-1 text-xs text-white rounded
-                ${product.badge.includes('Sale') ? 'bg-red-500' : 'bg-orange-400'}`}>
-                {product.badge}
-              </span>
-            )}
+        {trendingBrands.map((brand) => (
+          <div key={brand._id} className="relative p-4 bg-white rounded-lg shadow-sm">
             <img
-              src={product.image}
-              alt="Product"
+              src={getBrandImage(brand.brand_name, activeCategory)}
+              alt={brand.brand_name}
               className="object-cover w-full rounded-md h-100"
             />
+            <div className="mt-2 text-center">
+              <h3 className="font-semibold">{brand.brand_name}</h3>
+              {activeCategory === 'clothing' || (activeCategory === 'both' && ['Alkaram', 'J.', 'Saya', 'Khaadi', 'Zeen', 'Dhanak', 'Outfitters'].includes(brand.brand_name)) ? (
+              <p className="text-sm text-gray-600">Avg Discount: {brand.avg_discount}%</p>
+            ) : (
+              <p className="text-sm text-gray-600">Avg Deal: {brand.avg_deal_percentage}%</p>
+            )}
+            </div>
           </div>
         ))}
       </div>
@@ -77,3 +149,4 @@ const Index = () => {
 };
 
 export default Index;
+

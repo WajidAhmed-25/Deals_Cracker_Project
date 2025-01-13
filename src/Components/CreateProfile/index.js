@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 import { z } from "zod";
 
 const localUrl = process.env.REACT_APP_API_URL;
-const googleMapsApiKey = "AIzaSyA87Mlrc7Ct2nPdEsQcaBAsCVS53PEqfs4";
+const googleMapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 const defaultImage = "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg";
 

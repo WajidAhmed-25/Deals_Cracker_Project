@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faCircle, faShoppingCart, faSignIn, faSignOut } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import axios from "axios";
 
 import ProfileDropdown from './ProfileIcon/index';
 import WishlistPage from './Whishlist/index';
@@ -10,12 +11,31 @@ import WishlistPage from './Whishlist/index';
 const Index = () => {
   const [isWishlistOpen, setWishlistOpen] = useState(false);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [profile, setProfile] = useState(null);  // State to store profile data
   
   // Create refs for the dropdown containers
   const wishlistRef = useRef(null);
   const profileRef = useRef(null);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Fetch profile data on component mount
+    const fetchProfile = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/user/get_profile`, {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("dealscracker-token")}`, // Assuming the token is in the cookies
+          },
+        });
+        setProfile(response.data.profile); // Set profile data
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+      }
+    };
+
+    fetchProfile();
+  }, []);
 
   useEffect(() => {
     // Function to handle clicks outside
@@ -54,11 +74,6 @@ const Index = () => {
       setWishlistOpen(false);
     }
   };
-
-  // const handleLogout = () => {
-  //   Cookies.remove("dealscracker-token"); // Remove the token from cookies
-  //   navigate("/"); // Navigate to the homepage
-  // };
 
   return (
     <div className="w-full p-2 ThemeColor" data-aos="fade-down" data-aos-delay="200">
@@ -106,32 +121,30 @@ const Index = () => {
             {isWishlistOpen && <WishlistPage onClose={toggleWishlist} />}
           </div>
 
-          <div ref={profileRef}>
+          {/* <div ref={profileRef}>
             <FontAwesomeIcon
               icon={faCircle}
               className="text-3xl text-white cursor-pointer sm:text-5xl"
               onClick={toggleDropdown}
             />
-            {isDropdownOpen && <ProfileDropdown onClose={toggleDropdown} />}
-          </div>
-          {/* <div>
-            <button
-                onClick={handleLogout}
-                className="flex items-center justify-center w-32 h-10 rounded-full font-bold bg-white border border-[#267fa2da] shadow-sm hover:bg-[#2d789d] hover:text-white group transition-colors duration-300"
-              >
-                <span className="text-[#2d789d] group-hover:text-white transition-colors duration-300">
-                  Logout
-                </span>
-                <FontAwesomeIcon
-                  icon={faSignOut}
-                  className="ml-2 w-5 h-5 text-[#2d789d] group-hover:text-white transition-colors duration-300"
-                />
-              </button>
+            {isDropdownOpen && <ProfileDropdown onClose={toggleDropdown} profile={profile} />}
           </div> */}
+          <div ref={profileRef}>
+            {/* Display Profile Picture in the Icon */}
+            <div className="flex items-center justify-center w-12 h-12 bg-white rounded-full shadow-lg cursor-pointer">
+              <img
+                src={profile ? profile.profilePicture : "https://via.placeholder.com/64"} // Default to placeholder if no profile
+                alt="Profile"
+                className="rounded-full w-10 h-10"
+                onClick={toggleDropdown}
+              />
+            </div>
+            {isDropdownOpen && <ProfileDropdown onClose={toggleDropdown} profile={profile} />}
+          </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Index
+export default Index;
