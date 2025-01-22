@@ -27,11 +27,11 @@ import food_uk from './images/Food/united_king.png';
 const localUrl = process.env.REACT_APP_API_URL;
 
 const Index = () => {
-  const [activeCategory, setActiveCategory] = useState('clothing'); // Default to 'clothing'
+  const [activeCategory, setActiveCategory] = useState('both'); // Default to 'clothing'
   const [trendingBrands, setTrendingBrands] = useState([]);
 
   useEffect(() => {
-    const category = Cookies.get('dealscracker-category') || 'clothing'; // Get category from cookies (default to 'clothing')
+    const category = Cookies.get('dealscracker-category') || 'both'; // Get category from cookies (default to 'clothing')
     setActiveCategory(category);
     fetchTrendingBrands(category);
   }, []);
@@ -47,27 +47,34 @@ const Index = () => {
   };
 
   const getBrandImage = (brandName, category) => {
-    if (category === 'clothing' || category === 'both') {  // Handle both clothing and 'both' categories
-      switch (brandName) {
-        case 'Alkaram':
-          return clothes_alkaram;
-        case 'J.':
-          return clothes_j;
-        case 'Saya':
-          return clothes_saya;
-        case 'Khaadi':
-          return clothes_khaddi;
-        case 'Zeen':
-          return clothes_zeen;
-        case 'Dhanak':
-          return clothes_dhanak;
-        case 'Outfitters':
-          return clothes_outfitters;
-        default:
-          return clothes_center; // Default image for clothing
-      }
-    } 
-    if (category === 'food' || category === 'both') {  // Handle both food and 'both' categories
+    // First check if it's a food brand
+    const foodBrands = [
+      'Kababjees Fried Chicken',
+      'Angeethi',
+      'Delizia',
+      'Foods Inn',
+      'Ginsoy',
+      'Hot n Spicy',
+      'Karachi Broast',
+      'Kaybees',
+      'Pizza Point',
+      'Tooso',
+      'United King'
+    ];
+  
+    // Then check if it's a clothing brand
+    const clothingBrands = [
+      'Alkaram',
+      'J.',
+      'Saya',
+      'Khaadi',
+      'Zeen',
+      'Dhanak',
+      'Outfitters'
+    ];
+  
+    // If it's a food brand, return food image
+    if (foodBrands.includes(brandName)) {
       switch (brandName) {
         case 'Kababjees Fried Chicken':
           return food_kfc;
@@ -92,21 +99,41 @@ const Index = () => {
         case 'United King':
           return food_uk;
         default:
-          return food_center; // Default image for food
+          return food_center;
       }
     }
   
-    return '/path/to/default_image.png'; // Default image for unknown categories
-  };
+    // If it's a clothing brand, return clothing image
+    if (clothingBrands.includes(brandName)) {
+      switch (brandName) {
+        case 'Alkaram':
+          return clothes_alkaram;
+        case 'J.':
+          return clothes_j;
+        case 'Saya':
+          return clothes_saya;
+        case 'Khaadi':
+          return clothes_khaddi;
+        case 'Zeen':
+          return clothes_zeen;
+        case 'Dhanak':
+          return clothes_dhanak;
+        case 'Outfitters':
+          return clothes_outfitters;
+        default:
+          return clothes_center;
+      }
+    }
   
+    // Default fallback image
+    return category === 'food' ? food_center : clothes_center;
+  };
 
   return (
     <div className="container px-4 py-8 mx-auto">
-      {/* Header */}
+      {/* Header section remains the same */}
       <div className="flex flex-col items-center justify-between mb-8 md:flex-row">
         <h2 className="mb-4 text-3xl font-bold md:mb-0 text-[#237da0f8]">Top Trending Brands</h2>
-
-        {/* Category Buttons */}
         <div className="flex flex-wrap justify-center gap-2">
           {['clothing', 'food', 'both'].map((category) => (
             <button
@@ -124,22 +151,24 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Brand Grid */}
+      {/* Modified Brand Grid */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {trendingBrands.map((brand) => (
           <div key={brand._id} className="relative p-4 bg-white rounded-lg shadow-sm">
-            <img
-              src={getBrandImage(brand.brand_name, activeCategory)}
-              alt={brand.brand_name}
-              className="object-cover w-full rounded-md h-100"
-            />
+            <div className="flex items-center justify-center w-full h-40"> {/* Added container with fixed height */}
+              <img
+                src={getBrandImage(brand.brand_name, activeCategory)}
+                alt={brand.brand_name}
+                className="object-contain w-full h-full max-h-32" /* Modified image styling */
+              />
+            </div>
             <div className="mt-2 text-center">
               <h3 className="font-semibold">{brand.brand_name}</h3>
               {activeCategory === 'clothing' || (activeCategory === 'both' && ['Alkaram', 'J.', 'Saya', 'Khaadi', 'Zeen', 'Dhanak', 'Outfitters'].includes(brand.brand_name)) ? (
-              <p className="text-sm text-gray-600">Avg Discount: {brand.avg_discount}%</p>
-            ) : (
-              <p className="text-sm text-gray-600">Avg Deal: {brand.avg_deal_percentage}%</p>
-            )}
+                <p className="text-sm text-gray-600">Avg Discount: {brand.avg_discount}%</p>
+              ) : (
+                <p className="text-sm text-gray-600">Avg Deal: {brand.avg_deal_percentage}%</p>
+              )}
             </div>
           </div>
         ))}
