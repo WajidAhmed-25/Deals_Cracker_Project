@@ -9,6 +9,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
+import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 
 // Define validation schema using Zod
 const LoginSchema = z.object({
@@ -28,6 +29,7 @@ const Index = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fade, setFade] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -122,7 +124,7 @@ const Index = () => {
                   />
                 </div>
               </div>
-              <div>
+              {/* <div>
                 <label
                   htmlFor="password"
                   className="block text-sm font-medium text-[#267fa2da]"
@@ -139,6 +141,31 @@ const Index = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="block w-full appearance-none rounded-md border-2 border-[#267fa2aa] px-3 py-2 placeholder-gray-400 bg-white shadow-sm focus:border-[#6499b4e0] focus:outline-none focus:ring-[#2d789d] sm:text-md text-black"
+                  />
+                </div>
+              </div> */}
+              <div>
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-[#267fa2da]"
+                >
+                  Password
+                </label>
+                <div className="mt-1 relative">
+                  <input
+                    id="password"
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    autoComplete="current-password"
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="block w-full appearance-none rounded-md border-2 border-[#267fa2aa] px-3 py-2 placeholder-gray-400 bg-white shadow-sm focus:border-[#6499b4e0] focus:outline-none focus:ring-[#2d789d] sm:text-md text-black"
+                  />
+                  <FontAwesomeIcon
+                    icon={showPassword ? faEyeSlash : faEye}
+                    onClick={() => setShowPassword((prev) => !prev)}
+                    className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-600 cursor-pointer"
                   />
                 </div>
               </div>
