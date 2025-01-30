@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Heart } from 'lucide-react';
 
 const ProductCard = ({ product }) => {
 
@@ -33,38 +34,85 @@ const ProductCard = ({ product }) => {
   );
 
   return (
-    <div className="grid w-full grid-cols-1 gap-12 mt-6 mb-12 md:grid-cols-2 lg:grid-cols-4 ">
-      {product.map((plant) => (
-        <div
-          key={plant.id}
-        data-aos="fade-up" // Add AOS attribute for animation
-       className={` overflow-hidden ${plant.bgColor} rounded-lg shadow-lg group  transition-transform duration-300 hover:scale-105`}
-        >
-          <BackgroundSvg />
-          <div className="relative flex items-center justify-center px-10 pt-10 transition-transform duration-300 group-hover:scale-110">
-            <div
-              className="absolute bottom-0 left-0 block w-48 h-48 ml-3 -mb-24"
-              style={{
-                background: "radial-gradient(black, transparent 60%)",
-                transform: "rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1)",
-                opacity: 0.2,
-              }}
-            />
-            <img
-              className="relative object-contain w-40 h-40"
-              src={plant.imagePath}
-              alt={plant.name}
-            />
-          </div>
-          <div className="relative px-6 pb-6 mt-6 text-white">
-            <span className="block -mb-1 opacity-75">{plant.type}</span>
-            <div className="flex items-center justify-between mt-2">
-              <span className="block text-xl font-semibold">{plant.name}</span>
-              <span
-                className={`block bg-white ${plant.priceColor} text-xs font-bold px-3 py-2 leading-none flex items-center rounded-full`}
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {product.map((item) => (
+        <div key={item._id} className="relative group">
+          <div className="relative overflow-hidden rounded-lg bg-white shadow-md transition-transform duration-300 hover:-translate-y-1">
+            <div className="relative h-64">
+              <img
+                src={item.image_url}
+                alt={item.title}
+                className="object-cover w-full h-full"
+              />
+              <button className="absolute top-4 right-4 p-2 rounded-full bg-white/80 hover:bg-white transition-colors">
+                <Heart
+                  className={`w-6 h-6 ${
+                    item.isWishlist ? 'fill-red-500 text-red-500' : 'text-gray-600'
+                  }`}
+                />
+              </button>
+            </div>
+            
+            <div className="p-4">
+              <h3 className="text-lg font-semibold text-gray-800 truncate">
+                {item.title}
+              </h3>
+              
+              <div className="mt-2 space-y-1">
+                {item.category === 'clothing' ? (
+                  <div className="flex items-center gap-2">
+                    {item.discount_price ? (
+                      <>
+                        <span className="text-xl font-bold text-[#237da0f8]">
+                          ${item.discount_price}
+                        </span>
+                        <span className="text-sm text-gray-500 line-through">
+                          ${item.original_price}
+                        </span>
+                      </>
+                    ) : (
+                      <span className="text-xl font-bold text-[#237da0f8]">
+                        ${item.original_price}
+                      </span>
+                    )}
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    {item.sale_price ? (
+                      <>
+                        <span className="text-xl font-bold text-[#237da0f8]">
+                          ${item.sale_price}
+                        </span>
+                        <span className="text-sm text-gray-500 line-through">
+                          ${item.original_price}
+                        </span>
+                      </>
+                    ) : (
+                      <span className="text-xl font-bold text-[#237da0f8]">
+                        ${item.original_price}
+                      </span>
+                    )}
+                  </div>
+                )}
+                
+                {item.brand_name && (
+                  <p className="text-sm text-gray-600">
+                    Brand: {item.brand_name}
+                  </p>
+                )}
+                {item.food_category && (
+                  <p className="text-sm text-gray-600">
+                    Category: {item.food_category}
+                  </p>
+                )}
+              </div>
+              
+              <a
+                href={item.category === "clothing" ? item.product_page : item.product_url}
+                className="block w-full mt-4 px-4 py-2 text-center text-white bg-[#237da0f8] rounded-md hover:bg-[#1b6180] transition-colors"
               >
-                ${plant.price.toFixed(2)}
-              </span>
+                View Details
+              </a>
             </div>
           </div>
         </div>

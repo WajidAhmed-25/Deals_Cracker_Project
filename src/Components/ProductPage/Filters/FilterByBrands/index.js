@@ -1,16 +1,6 @@
 import React from 'react';
 
-const FilterByBrands = () => {
-  const brands = [
-    'Apple',
-    'Samsung',
-    'Microsoft',
-    'Apple',
-    'HP',
-    'DELL',
-    'Redmi'
-  ];
-
+const FilterByBrands = ({ brands = [] }) => {
   return (
     <div className="w-full p-4 mt-6 bg-white rounded-lg shadow-lg">
       <div className="pb-2 text-center">

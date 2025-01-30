@@ -6,7 +6,7 @@ const CustomSelect = () => {
   const [selectedOption, setSelectedOption] = useState('Popular');
 
   const options = [
-    { value: 'popular', label: 'Popular', icon: <TrendingUp className="w-4 h-4" /> },
+    { value: 'old', label: 'Old', icon: <TrendingUp className="w-4 h-4" /> },
     { value: 'newest', label: 'Newest', icon: <Clock className="w-4 h-4" /> },
     { value: 'priceAsc', label: 'Price: Low to High', icon: <ArrowUpCircle className="w-4 h-4" /> },
     { value: 'priceDesc', label: 'Price: High to Low', icon: <ArrowDownCircle className="w-4 h-4" /> },
