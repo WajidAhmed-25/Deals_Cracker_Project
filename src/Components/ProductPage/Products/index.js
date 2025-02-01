@@ -173,11 +173,11 @@ const ProductCard = ({ product = [] }) => {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 w-full">
       <Toaster />
       {product.map((item) => (
         <div key={item._id} className="relative group">
-          <div className="relative overflow-hidden rounded-lg bg-white shadow-md transition-transform duration-300 hover:-translate-y-1">
+          <div className="relative overflow-hidden rounded-lg bg-white shadow-2xl  transition-transform duration-300 hover:-translate-y-1">
             <div className="relative h-64">
               <img
                 src={item.image_url}
@@ -186,74 +186,94 @@ const ProductCard = ({ product = [] }) => {
               />
               {/* Wishlist Button */}
               <button
-                className="absolute top-4 right-4 p-2 rounded-full bg-white/80 hover:bg-white transition-colors"
+                className="absolute top-4 right-4 p-2 rounded-full shadow-2xl bg-white/80 border border-[#237da0f8] hover:bg-white transition-colors"
                 onClick={() => handleToggleWishlist(item._id)}
               >
                 <Heart
-                  className={`w-6 h-6 ${
+                  className={`w-8 h-8 ${
                     wishlist[item._id] || item.isWishlist ? 'fill-red-500 text-red-500' : 'text-gray-600'
                   }`}
                 />
               </button>
             </div>
             
-            <div className="p-4">
-              <h3 className="text-lg font-semibold text-gray-800 truncate">
+            <div className="p-4 text-center">
+              <h3 className="text-lg  font-semibold text-gray-800 truncate">
                 {item.title}
               </h3>
               
               <div className="mt-2 space-y-1">
                 {item.category === 'clothing' ? (
-                  <div className="flex items-center gap-2">
-                    {item.sale_price ? (
-                      <>
-                        <span className="text-xl font-bold text-[#237da0f8]">
-                          ${item.sale_price}
-                        </span>
-                        <span className="text-sm text-gray-500 line-through">
-                          ${item.original_price}
-                        </span>
-                      </>
-                    ) : (
-                      <span className="text-xl font-bold text-[#237da0f8]">
-                        ${item.original_price}
-                      </span>
-                    )}
-                  </div>
+                  // <div className="flex items-center gap-2 bg-pink-200">
+                  //   {item.sale_price ? (
+                  //     <>
+                  //       <span className="text-xl font-bold text-[#237da0f8]">
+                  //         ${item.sale_price}
+                  //       </span>
+                  //       <span className="text-sm text-gray-500 line-through">
+                  //         ${item.original_price}
+                  //       </span>
+                  //     </>
+                  //   ) : (
+                  //     <span className="text-xl  font-bold text-[#237da0f8]">
+                  //       ${item.original_price}
+                  //     </span>
+                  //   )}
+                  // </div>
+                  <div className="flex items-center justify-center gap-2  p-2 w-full text-center">
+  {item.sale_price ? (
+    <>
+      <span className="text-xl font-bold text-[#237da0f8]">${item.sale_price}</span>
+      <span className="text-sm text-gray-500 line-through">${item.original_price}</span>
+    </>
+  ) : (
+    <span className="text-xl font-bold text-[#237da0f8]">${item.original_price}</span>
+  )}
+</div>
                 ) : (
-                  <div className="flex items-center gap-2">
-                    {item.discount_price ? (
-                      <>
-                        <span className="text-xl font-bold text-[#237da0f8]">
-                          ${item.discount_price}
-                        </span>
-                        <span className="text-sm text-gray-500 line-through">
-                          ${item.original_price}
-                        </span>
-                      </>
-                    ) : (
-                      <span className="text-xl font-bold text-[#237da0f8]">
-                        ${item.original_price}
-                      </span>
-                    )}
-                  </div>
+                  // <div className="flex items-center gap-2 bg-yellow-200">
+                  //   {item.discount_price ? (
+                  //     <>
+                  //       <span className="text-xl font-bold text-[#237da0f8]">
+                  //         ${item.discount_price}
+                  //       </span>
+                  //       <span className="text-sm text-gray-500 line-through">
+                  //         ${item.original_price}
+                  //       </span>
+                  //     </>
+                  //   ) : (
+                  //     <span className="text-xl font-bold text-[#237da0f8]">
+                  //       ${item.original_price}
+                  //     </span>
+                  //   )}
+                  // </div>
+                  <div className="flex items-center justify-center gap-2 p-2 w-full text-center">
+  {item.discount_price ? (
+    <>
+      <span className="text-xl font-bold text-[#237da0f8]">${item.discount_price}</span>
+      <span className="text-sm text-gray-500 line-through">${item.original_price}</span>
+    </>
+  ) : (
+    <span className="text-xl font-bold text-[#237da0f8]">${item.original_price}</span>
+  )}
+</div>
                 )}
                 
                 {item.brand_name && (
                   <p className="text-sm text-gray-600">
-                    Brand: {item.brand_name}
+                  <span className='text-[#237da0f8] font-semibold text-lg'>  Brand: </span> {item.brand_name}
                   </p>
                 )}
                 {item.food_category && (
                   <p className="text-sm text-gray-600">
-                    Category: {item.food_category}
+                  <span className='text-[#237da0f8] font-semibold text-lg'>  Category:   </span> {item.food_category}
                   </p>
                 )}
               </div>
               
               <a
                 href={item.category === "clothing" ? item.product_page : item.product_url}
-                className="block w-full mt-4 px-4 py-2 text-center text-white bg-[#237da0f8] rounded-md hover:bg-[#1b6180] transition-colors"
+                className="block w-[60%] mt-4 px-4 py-2.5 mx-auto  text-center text-white bg-[#237da0f8] rounded-full hover:bg-[#1b6180] transition-colors"
               >
                 View Details
               </a>
