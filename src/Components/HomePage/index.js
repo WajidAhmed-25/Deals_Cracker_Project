@@ -93,7 +93,7 @@ const Index = () => {
         variants={staggerContainer}
       >
         <motion.div variants={staggerItem}>
-       <Animation/>
+       {/* <Animation/> */}
         </motion.div>
       </motion.div>
 

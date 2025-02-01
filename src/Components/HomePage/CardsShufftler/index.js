@@ -130,18 +130,18 @@ const Index = () => {
   };
 
   return (
-    <div className="container px-4 py-8 mx-auto">
+    <div className="w-[90%] px-4 py-8 mx-auto">
       {/* Header section remains the same */}
       <div className="flex flex-col items-center justify-between mb-8 md:flex-row">
         <h2 className="mb-4 text-3xl font-bold md:mb-0 text-[#237da0f8]">Top Trending Brands</h2>
-        <div className="flex flex-wrap justify-center gap-2">
-          {['clothing', 'food', 'both'].map((category) => (
+        <div className="flex flex-wrap justify-center gap-8">
+          {['both', 'clothing', 'food'].map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors
+              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-colors
                 ${activeCategory === category
-                  ? 'bg-[#237da0f8] text-white'
+                  ? 'bg-[#237da0f8] hover:bg-[#217595] text-white font-bold py-2 px-4 rounded-full animate-pulse'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
             >
@@ -152,9 +152,9 @@ const Index = () => {
       </div>
 
       {/* Modified Brand Grid */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-1 mt-4 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {trendingBrands.map((brand) => (
-          <div key={brand._id} className="relative p-4 bg-white rounded-lg shadow-sm">
+          <div key={brand._id} className="relative p-4 bg-white rounded-md shadow-2xl hover:cursor-pointer hover:scale-125 hover:duration-300 hover:transition-all border border-[#237da0f8]">
             <div className="flex items-center justify-center w-full h-40"> {/* Added container with fixed height */}
               <img
                 src={getBrandImage(brand.brand_name, activeCategory)}

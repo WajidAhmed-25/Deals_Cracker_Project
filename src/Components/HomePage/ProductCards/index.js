@@ -13,15 +13,22 @@ const ProductCard = ({ product }) => (
       />
     </div>
     <div className="relative px-6 pb-6 mt-6 text-white">
-      <span className="block -mb-1 opacity-75">{product.type}</span>
+      <span className="block mb-2 opacity-75">{product.type}</span>
       <div className="flex justify-between">
         <span className="block text-xl font-semibold">{product.title}</span>
-        <span
+        {/* <span
           className={`bg-white rounded-full ${product.priceColor} text-xs font-bold px-3 py-2 leading-none flex items-center`}
         >
           {product.sale_price ? `PKR ${product.sale_price}` : `PKR ${product.original_price}`}
-        </span>
+        </span> */}
       </div>
+      <div className="w-full mx-auto flex justify-center item-center">
+      <span
+          className={`bg-white rounded-md ${product.priceColor} text-lg  w-3/4 mt-4 font-bold px-3 py-4 text-center leading-none`}
+        >
+          {product.sale_price ? `PKR ${product.sale_price}` : `PKR ${product.original_price}`}
+        </span>
+        </div>
     </div>
   </div>
 );
@@ -79,7 +86,7 @@ export default function AnimatedDealsCards() {
     <div className="relative w-full bg-white">
       <h1 className="text-4xl font-bold fontColor pb-4 pl-4">Top Money-Saving Deals</h1>
       {/* Scrolling container for Clothing Deals */}
-      <div className="overflow-hidden">
+      <div className="overflow-hidden mt-8">
         <div className="flex animate-scroll">
           {[...clothingDeals, ...clothingDeals].map((deal, index) => (
             <ProductCard key={index} product={deal} />
