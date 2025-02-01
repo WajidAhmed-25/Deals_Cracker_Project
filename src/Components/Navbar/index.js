@@ -89,7 +89,7 @@ const Index = () => {
         </div>
 
         {/* Second Section: Search Bar */}
-        <div className="flex items-center justify-center sm:justify-center w-full sm:w-[45%] py-4 sm:py-0">
+        {/* <div className="flex items-center justify-center sm:justify-center w-full sm:w-[45%] py-4 sm:py-0">
           <div className="relative w-full max-w-xl">
             <input
               type="text"
@@ -111,7 +111,7 @@ const Index = () => {
               />
             </svg>
           </div>
-        </div>
+        </div> */}
 
         {/* Third Section: Icons */}
         <div className="flex items-center justify-center sm:justify-end w-full sm:w-[25%] gap-4 sm:gap-6 pr-4 sm:pr-12 py-3">
@@ -126,7 +126,8 @@ const Index = () => {
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    fill="url(#gradient)"
+                    // fill="url(#gradient)"
+                    fill="#ffffff"
                     className="w-14 h-14"
                   >
                     <defs>
@@ -148,7 +149,7 @@ const Index = () => {
                   <img
                     src={profile ? profile.profilePicture : "https://via.placeholder.com/64"}
                     alt="Profile"
-                    className="rounded-full w-10 h-10"
+                    className="rounded-full w-12 h-12"
                     onClick={toggleDropdown}
                   />
                 </div>
