@@ -31,6 +31,7 @@
 //   const fetchProducts = async (page = 1, category = activeCategory, perPage = limit, filterParams = {}) => {
 //     setLoading(true);
 //     try {
+//       const token = Cookies.get('dealscracker-token');
 //       const queryParams = new URLSearchParams({
 //         category,
 //         page,
@@ -38,13 +39,21 @@
 //         ...filterParams,
 //       }).toString();
 
-//       const response = await fetch(`${localUrl}/clothingAndFood/getAllProducts?${queryParams}`);
+//       const apiUrl = token
+//         ? `${localUrl}/clothingAndFood/getAllProductsByUser?${queryParams}`
+//         : `${localUrl}/clothingAndFood/getAllProducts?${queryParams}`;
+
+//       const response = await fetch(apiUrl, {
+//         headers: token ? { Authorization: `Bearer ${token}` } : {},
+//       });
+
 //       const data = await response.json();
-//       setProducts(data.products);
-//       setTotalPages(data.totalPages);
-//       setCurrentPage(data.currentPage);
+//       setProducts(data.products || []); // Ensure it's always an array
+//       setTotalPages(data.totalPages || 1);
+//       setCurrentPage(data.currentPage || 1);
 //     } catch (error) {
 //       console.error('Error fetching products:', error);
+//       setProducts([]); // Handle error by setting an empty array
 //     } finally {
 //       setLoading(false);
 //     }
@@ -151,7 +160,11 @@
 //             </div>
 //           ) : (
 //             <>
-//               <ProductGrid products={products} applyFilter={applyFilter} />
+//               {products.length > 0 ? (
+//                 <ProductGrid products={products} applyFilter={applyFilter} />
+//               ) : (
+//                 <p className="text-gray-500 text-center w-full">No products available</p>
+//               )}
 //               <div className="flex justify-center mt-8 gap-2">
 //                 <button
 //                   onClick={() => handlePageChange(currentPage - 1)}
@@ -184,6 +197,7 @@
 
 
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Filters from './Filters/index';
 import ProductGrid from './ProductGrid/index';
 import { ChevronLeft, ChevronRight, Search } from 'lucide-react';
@@ -201,7 +215,12 @@ const ProductPage = () => {
   const [filters, setFilters] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
 
+  const location = useLocation();
   const localUrl = process.env.REACT_APP_API_URL;
+
+  // Get brand_name from query parameters
+  const queryParams = new URLSearchParams(location.search);
+  const brandName = queryParams.get('brand_name') || '';
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -210,10 +229,10 @@ const ProductPage = () => {
   useEffect(() => {
     const category = Cookies.get('dealscracker-category') || 'both';
     setActiveCategory(category);
-    fetchProducts(1, category, limit, filters);
-  }, [limit, filters]);
+    fetchProducts(1, category, limit, filters, brandName);
+  }, [limit, filters, brandName]);
 
-  const fetchProducts = async (page = 1, category = activeCategory, perPage = limit, filterParams = {}) => {
+  const fetchProducts = async (page = 1, category = activeCategory, perPage = limit, filterParams = {}, brand = '') => {
     setLoading(true);
     try {
       const token = Cookies.get('dealscracker-token');
@@ -222,7 +241,12 @@ const ProductPage = () => {
         page,
         limit: perPage,
         ...filterParams,
-      }).toString();
+      });
+
+      // If brand is selected, add brand_name to query
+      if (brand) {
+        queryParams.append('brand_name', brand);
+      }
 
       const apiUrl = token
         ? `${localUrl}/clothingAndFood/getAllProductsByUser?${queryParams}`
@@ -249,25 +273,25 @@ const ProductPage = () => {
       const newCategory = Cookies.get("dealscracker-category") || "both";
       if (newCategory !== activeCategory) {
         setActiveCategory(newCategory);
-        fetchProducts(1, newCategory, limit, filters);
+        fetchProducts(1, newCategory, limit, filters, brandName);
         setCurrentPage(1);
       }
     };
 
     const cookieCheckInterval = setInterval(handleCookieChange, 1000);
     return () => clearInterval(cookieCheckInterval);
-  }, [activeCategory, limit, filters]);
+  }, [activeCategory, limit, filters, brandName]);
 
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= totalPages) {
       setCurrentPage(newPage);
-      fetchProducts(newPage, activeCategory, limit, filters);
+      fetchProducts(newPage, activeCategory, limit, filters, brandName);
     }
   };
 
   const applyFilter = (newFilters) => {
     setFilters((prevFilters) => ({ ...prevFilters, ...newFilters }));
-    fetchProducts(1, activeCategory, limit, { ...filters, ...newFilters });
+    fetchProducts(1, activeCategory, limit, { ...filters, ...newFilters }, brandName);
   };
 
   // Perform search filtering on onChange
@@ -276,7 +300,7 @@ const ProductPage = () => {
     setSearchQuery(searchTerm);
 
     // Apply search filter dynamically
-    fetchProducts(1, activeCategory, limit, { ...filters, search: searchTerm });
+    fetchProducts(1, activeCategory, limit, { ...filters, search: searchTerm }, brandName);
   };
 
   return (
@@ -379,4 +403,3 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
-
