@@ -58,6 +58,7 @@ const Index = () => {
       Cookies.set("dealscracker-token", response.data.access_token, {
         secure: true,
         sameSite: "strict",
+        expires: 1,
       });
       if(response.data.detail === "Please complete your profile before logging in."){
 

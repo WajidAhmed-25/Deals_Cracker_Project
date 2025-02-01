@@ -9,7 +9,7 @@ import FilterByRating from './FilterByRatings';
 import FilterByBrand from './FilterByBrands';
 import Cookies from 'js-cookie';
 
-const Filters = ({ categories}) => {
+const Filters = ({ categories, applyFilter}) => {
 
   const [filterData, setFilterData] = useState(null);
   const [activeCategory, setActiveCategory] = useState('both');
@@ -48,11 +48,11 @@ const Filters = ({ categories}) => {
 
 <div className='flex flex-col gap-12'>
 {activeCategory === 'food' && filterData.food?.foodCategories && (
-          <FilterByCategory categories={filterData.food.foodCategories} />
+          <FilterByCategory categories={filterData.food.foodCategories} applyFilter={applyFilter}/>
         )}
 
-<FilterByPrice maxPrice={maxPrice} />
-        <FilterByBrand brands={brands} />
+<FilterByPrice maxPrice={maxPrice} applyFilter={applyFilter} />
+        <FilterByBrand brands={brands} applyFilter={applyFilter} />
 
 </div>
     </>  
