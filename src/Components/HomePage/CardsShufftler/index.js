@@ -162,10 +162,10 @@ const Index = () => {
                 className="object-contain w-full h-full max-h-32" /* Modified image styling */
               />
             </div>
-            <div className="mt-2 text-center">
-              <h3 className="font-semibold">{brand.brand_name}</h3>
+            <div className="mt-2 text-center ">
+              <h3 className="font-bold text-xl text-[#237da0f8]">{brand.brand_name}</h3>
               {activeCategory === 'clothing' || (activeCategory === 'both' && ['Alkaram', 'J.', 'Saya', 'Khaadi', 'Zeen', 'Dhanak', 'Outfitters'].includes(brand.brand_name)) ? (
-                <p className="text-sm text-gray-600">Avg Discount: {brand.avg_discount}%</p>
+                <p className="text-sm text-gray-600 tracking-wide">Avg Discount: {brand.avg_discount}%</p>
               ) : (
                 <p className="text-sm text-gray-600">Avg Deal: {brand.avg_deal_percentage}%</p>
               )}

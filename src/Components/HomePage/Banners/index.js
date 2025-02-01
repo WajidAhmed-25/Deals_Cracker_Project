@@ -31,26 +31,26 @@ const FeaturesSection = () => {
   const features = [
     {
       icon: Truck,
-      title: 'Free Shipping',
-      description: 'Free shipping all over the US',
+      title: 'Brands Promotion',
+      description: 'Impowering The Local Brands',
       delay: 0,
     },
     {
       icon: ShieldCheck,
-      title: '100% Satisfaction',
-      description: 'Free shipping all over the US',
+      title: 'Rate Transparency',
+      description: 'No Manipulation In Cost Rate',
       delay: 100,
     },
     {
       icon: CreditCard,
-      title: 'Secure Payments',
-      description: 'Free shipping all over the US',
+      title: 'Customer Relief',
+      description: 'All Brands Under One Roof',
       delay: 200,
     },
     {
       icon: HeadphonesIcon,
-      title: '24/7 Support',
-      description: 'Free shipping all over the US',
+      title: 'Customer Support',
+      description: 'Providing Trustworthy Service',
       delay: 300,
     },
   ];

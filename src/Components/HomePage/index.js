@@ -132,7 +132,7 @@ const Index = () => {
         </motion.div>
       </motion.div>
 
-      <motion.div
+      {/* <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -141,7 +141,7 @@ const Index = () => {
         <motion.div variants={staggerItem}>
           <WeeklyTopVendors />
         </motion.div>
-      </motion.div>
+      </motion.div> */}
 
       <motion.div
         initial="hidden"
@@ -154,7 +154,7 @@ const Index = () => {
         </motion.div>
       </motion.div>
 
-      <motion.div
+      {/* <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -163,9 +163,9 @@ const Index = () => {
         <motion.div variants={staggerItem}>
           <DeliveryBanner />
         </motion.div>
-      </motion.div>
+      </motion.div> */}
 
-      <motion.div
+      {/* <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -174,9 +174,9 @@ const Index = () => {
         <motion.div variants={staggerItem}>
           <OrganicFoodGrid />
         </motion.div>
-      </motion.div>
+      </motion.div> */}
 
-      <motion.div
+      {/* <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -185,7 +185,7 @@ const Index = () => {
         <motion.div variants={staggerItem}>
           <ProductShowcase />
         </motion.div>
-      </motion.div>
+      </motion.div> */}
 
       <motion.div
         initial="hidden"

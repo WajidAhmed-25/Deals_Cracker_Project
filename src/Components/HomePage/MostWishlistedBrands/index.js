@@ -321,16 +321,16 @@ const MostWishlistedBrands = () => {
       <div className="flex flex-col items-center justify-between mb-8 md:flex-row">
         <h2 className="mb-4 text-3xl font-bold md:mb-0 text-[#237da0f8]">Most Wishlisted Brands</h2>
         <div className="flex flex-wrap justify-center gap-2">
-          {['clothing', 'food', 'both'].map((category) => (
+          {['both', 'clothing', 'food'].map((category) => (
             <button
               key={category}
               onClick={() => {
                 setActiveCategory(category);
                 fetchWishlistedBrands(category);
               }}
-              className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors
+              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-colors
                 ${activeCategory === category
-                  ? 'bg-[#237da0f8] text-white'
+                  ? 'bg-[#237da0f8] hover:bg-[#217595] text-white font-bold py-2 px-4 rounded-full animate-pulse'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
             >
@@ -341,9 +341,9 @@ const MostWishlistedBrands = () => {
       </div>
 
       {/* Brands Grid */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-8  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {wishlistedBrands.map((brand) => (
-          <div key={brand._id} className="relative p-4 bg-white rounded-lg shadow-sm">
+          <div key={brand._id} className="relative mt-4 p-4 bg-white rounded-md shadow-2xl hover:cursor-pointer hover:scale-125 hover:duration-300 hover:transition-all border border-[#237da0f8]">
             {/* Wishlist Percentage Badge */}
             <div className="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold py-1 px-2 rounded-full">
               {brand.wishlist_percent}%
