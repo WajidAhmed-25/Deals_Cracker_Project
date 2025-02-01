@@ -9,7 +9,7 @@ import axios from "axios";
 import { z } from "zod";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-
+import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 
 const localUrl = process.env.REACT_APP_API_URL;
 
@@ -27,6 +27,8 @@ const UpdatePassword = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [fade, setFade] = useState(false);
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   useEffect(() => {
     AOS.init();
@@ -95,44 +97,52 @@ const UpdatePassword = () => {
         <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="px-4 py-4 bg-white shadow sm:rounded-lg sm:px-10">
             <form className="space-y-6" onSubmit={handleSubmit}>
-              <div>
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium text-[#267fa2da]"
-                >
-                  New Password
-                </label>
-                <div className="mt-1">
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="block w-full appearance-none rounded-md border-2 border-[#267fa2aa] px-3 py-2 placeholder-gray-400 bg-white shadow-sm focus:border-[#6499b4e0] focus:outline-none focus:ring-[#2d789d] sm:text-md text-black"
-                  />
-                </div>
-              </div>
-              <div>
-                <label
-                  htmlFor="confirmPassword"
-                  className="block text-sm font-medium text-[#267fa2da]"
-                >
-                  Confirm New Password
-                </label>
-                <div className="mt-1">
-                  <input
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    type="password"
-                    required
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="block w-full appearance-none rounded-md border-2 border-[#267fa2aa] px-3 py-2 placeholder-gray-400 bg-white shadow-sm focus:border-[#6499b4e0] focus:outline-none focus:ring-[#2d789d] sm:text-md text-black"
-                  />
-                </div>
-              </div>
+            <div>
+      <label
+        htmlFor="password"
+        className="block text-sm font-medium text-[#267fa2da]"
+      >
+        New Password
+      </label>
+      <div className="mt-1 relative">
+        <input
+          id="password"
+          name="password"
+          type={showPassword ? "text" : "password"}
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="block w-full appearance-none rounded-md border-2 border-[#267fa2aa] px-3 py-2 placeholder-gray-400 bg-white shadow-sm focus:border-[#6499b4e0] focus:outline-none focus:ring-[#2d789d] sm:text-md text-black pr-10"
+        />
+        <FontAwesomeIcon
+          icon={showPassword ? faEyeSlash : faEye}
+          onClick={() => setShowPassword((prev) => !prev)}
+          className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-600 cursor-pointer"
+        />
+      </div>
+    </div>
+    <label
+        htmlFor="confirmPassword"
+        className="block text-sm font-medium text-[#267fa2da] mt-4"
+      >
+        Confirm New Password
+      </label>
+      <div className="mt-1 relative">
+        <input
+          id="confirmPassword"
+          name="confirmPassword"
+          type={showConfirmPassword ? "text" : "password"}
+          required
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          className="block w-full appearance-none rounded-md border-2 border-[#267fa2aa] px-3 py-2 placeholder-gray-400 bg-white shadow-sm focus:border-[#6499b4e0] focus:outline-none focus:ring-[#2d789d] sm:text-md text-black pr-10"
+        />
+        <FontAwesomeIcon
+          icon={showConfirmPassword ? faEyeSlash : faEye}
+          onClick={() => setShowConfirmPassword((prev) => !prev)}
+          className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-600 cursor-pointer"
+        />
+      </div>
               <div className="hover:scale-110 hover:transition-all hover:cursor-pointer">
                 <button
                   type="submit"

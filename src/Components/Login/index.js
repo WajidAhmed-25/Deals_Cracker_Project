@@ -125,26 +125,6 @@ const Index = () => {
                   />
                 </div>
               </div>
-              {/* <div>
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium text-[#267fa2da]"
-                >
-                  Password
-                </label>
-                <div className="mt-1">
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    autoComplete="current-password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="block w-full appearance-none rounded-md border-2 border-[#267fa2aa] px-3 py-2 placeholder-gray-400 bg-white shadow-sm focus:border-[#6499b4e0] focus:outline-none focus:ring-[#2d789d] sm:text-md text-black"
-                  />
-                </div>
-              </div> */}
               <div>
                 <label
                   htmlFor="password"
@@ -215,29 +195,7 @@ const Index = () => {
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-gray-300"></div>
                 </div>
-                <div className="relative flex justify-center text-sm">
-                  <span className="bg-white px-2 rounded-md text-[#2d789d] font-semibold">
-                    Or continue with
-                  </span>
-                </div>
-              </div>
-              <div className="grid grid-cols-3 gap-3 mt-6">
-                {socialIcons.map((social) => (
-                  <div
-                    key={social.name}
-                    className="flex items-center justify-center hover:scale-110 hover:transition-all hover:cursor-pointer"
-                  >
-                    <a
-                      href="#"
-                      className="inline-flex justify-center items-center w-12 h-12 rounded-full bg-white border border-[#267fa2da] shadow-sm hover:bg-[#2d789d] hover:text-white"
-                    >
-                      <FontAwesomeIcon
-                        icon={social.icon}
-                        className="text-[#2d789d] hover:text-white text-xl"
-                      />
-                    </a>
-                  </div>
-                ))}
+                
               </div>
             </div>
           </div>
