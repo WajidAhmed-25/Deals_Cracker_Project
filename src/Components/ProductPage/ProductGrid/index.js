@@ -4,7 +4,7 @@ import ProductCard from '../Products/index';
 import ViewToggleButtons from './ViewToggleButtons';
 import CustomSelect from './CustomSelectOptions';
 
-const ProductGrid = ({ products }) => {
+const ProductGrid = ({ products, applyFilter }) => {
   return (
     <div className="w-full ">
       <div className="flex items-center justify-between mb-6 ">
@@ -13,7 +13,7 @@ const ProductGrid = ({ products }) => {
    
 <ViewToggleButtons/> 
 
- <CustomSelect/>
+ <CustomSelect applyFilter={applyFilter} />
         </div>
         
       </div>

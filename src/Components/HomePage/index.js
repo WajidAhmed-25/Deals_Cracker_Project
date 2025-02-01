@@ -21,6 +21,7 @@ import ScrollToTop from '../ScrollArrow';
 import Animation from '../Animations/index'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import MostWishlistedBrands from './MostWishlistedBrands';
 
 const Index = () => {
   useEffect(() => {
@@ -85,7 +86,6 @@ const Index = () => {
         </motion.div>
       </motion.div>
 
-
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -140,6 +140,17 @@ const Index = () => {
       >
         <motion.div variants={staggerItem}>
           <WeeklyTopVendors />
+        </motion.div>
+      </motion.div>
+
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={staggerContainer}
+      >
+        <motion.div variants={staggerItem}>
+          <MostWishlistedBrands />
         </motion.div>
       </motion.div>
 

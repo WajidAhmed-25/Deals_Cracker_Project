@@ -1,89 +1,117 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-
-import React from 'react';
-
-const plantData = [
-  {
-    id: 1,
-    name: "Peace Lily",
-    type: "Indoor",
-    price: 36.00,
-    image: "https://zeenwoman.com/cdn/shop/files/WOM34118.jpg?v=1717570202&width=600",
-    bgColor: "bg-[#237da0f8]",
-    priceColor: "text-[#237da0f8]"
-  },
-  {
-    id: 2,
-    name: "Monstera",
-    type: "Outdoor",
-    price: 45.00,
-    image: "https://bagallery.com/cdn/shop/products/0PREDAY22V22_3.jpg?v=1657115865",
-    bgColor: "bg-[#237da0f8]",
-    priceColor: "text-[#237da0f8]"
-  },
-  {
-    id: 3,
-    name: "Oak Tree",
-    type: "Outdoor",
-    price: 68.50,
-    image: "https://outfitters.com.pk/cdn/shop/files/F0278107901M_2.jpg?v=1700132756",
-    bgColor: "bg-[#237da0f8]",
-    priceColor: "text-[#237da0f8]"
-  },
-  {
-    id: 4,
-    name: "Oak Tree",
-    type: "Outdoor",
-    price: 68.50,
-    image: "https://tse3.mm.bing.net/th?id=OIP.llaHtgrXAu1abgIspIT4DQHaLH&pid=Api&P=0&h=220",
-    bgColor: "bg-[#237da0f8]",
-    priceColor: "text-[#237da0f8]"
-  },
-  {
-    id: 5,
-    name: "Oak Tree",
-    type: "Outdoor",
-    price: 68.50,
-    image: "https://www.alkaramstudio.com/cdn/shop/files/RB24-7-013_C_2_b4517b84-9972-4acd-8b20-2a8e9ee8744f.jpg?v=1722420220&width=600",
-    bgColor: "bg-[#237da0f8]",
-    priceColor: "text-[#237da0f8]"
-  },
-
-];
-
-const PlantCard = ({ plant }) => {
-  return (
-    <div className={`flex-shrink-0 m-6 relative overflow-hidden ${plant.bgColor} rounded-lg max-w-xs shadow-lg group `}>
-      <svg 
-        className="absolute bottom-0 left-0 mb-8 scale-150 group-hover:scale-[1.65] transition-transform"
-        viewBox="0 0 375 283" 
-        fill="none"
+const ProductCard = ({ product }) => (
+  <div
+    className={`flex-shrink-0 m-6 relative overflow-hidden ${product.bgColor} rounded-lg max-w-xs shadow-lg group`}
+  >
+    <div className="relative flex items-center justify-center px-10 pt-10 transition-transform group-hover:scale-110">
+      <img
+        className="relative w-56 rounded-md hover:cursor-pointer hover:transition-all hover:duration-300"
+        src={product.image}
+        alt={product.title}
       />
-      <div className="relative flex items-center justify-center px-10 pt-10 transition-transform group-hover:scale-110">
-        <div className="absolute bottom-0 left-0 block w-48 h-48 ml-3 -mb-20" />
-        <img className="relative w-40 rounded-md hover:cursor-pointer hover:transition-all hover:duration-300" src={plant.image} alt={plant.name} />
-      </div>
-      <div className="relative px-6 pb-6 mt-6 text-white">
-        <span className="block -mb-1 opacity-75">{plant.type}</span>
-        <div className="flex justify-between">
-          <span className="block text-xl font-semibold">{plant.name}</span>
-          <span className={`bg-white rounded-full ${plant.priceColor} text-xs font-bold px-3 py-2 leading-none flex items-center`}>
-            ${plant.price.toFixed(2)}
-          </span>
-        </div>
+    </div>
+    <div className="relative px-6 pb-6 mt-6 text-white">
+      <span className="block -mb-1 opacity-75">{product.type}</span>
+      <div className="flex justify-between">
+        <span className="block text-xl font-semibold">{product.title}</span>
+        <span
+          className={`bg-white rounded-full ${product.priceColor} text-xs font-bold px-3 py-2 leading-none flex items-center`}
+        >
+          {product.sale_price ? `PKR ${product.sale_price}` : `PKR ${product.original_price}`}
+        </span>
       </div>
     </div>
-  );
-};
+  </div>
+);
 
-export default function PlantCards() {
+export default function AnimatedDealsCards() {
+  const [deals, setDeals] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const getCookie = (name) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(";").shift();
+      return null;
+    };
+
+    const category = getCookie("dealscracker-category") || "both";
+    const apiUrl = `${process.env.REACT_APP_API_URL}/clothingAndFood/getTop5Products?category=${category}`;
+
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        setDeals(response.data);
+      })
+      .catch((err) => {
+        setError("Failed to fetch deals. Please try again.");
+        console.error(err);
+      });
+  }, []);
+
+  if (error) {
+    return <div className="error">{error}</div>;
+  }
+
+  if (!deals) {
+    return <div>Loading deals...</div>;
+  }
+
+  const transformData = (data, type) => {
+    return data.map((item) => ({
+      title: item.title,
+      image: item.image_url,
+      type: type,
+      original_price: item.original_price,
+      sale_price: item.sale_price,
+      bgColor: "bg-[#237da0f8]",
+      priceColor: "text-[#237da0f8]",
+    }));
+  };
+
+  const clothingDeals = deals.clothing_deals ? transformData(deals.clothing_deals, "Clothing") : [];
+  const foodDeals = deals.food_deals ? transformData(deals.food_deals, "Food") : [];
+
   return (
-    <div>
-      <div className="flex flex-wrap items-center justify-center p-1">
-        {plantData.map(plant => (
-          <PlantCard key={plant.id} plant={plant} />
-        ))}
+    <div className="relative w-full bg-white">
+      <h1 className="text-4xl font-bold fontColor pb-4 pl-4">Top Money-Saving Deals</h1>
+      {/* Scrolling container for Clothing Deals */}
+      <div className="overflow-hidden">
+        <div className="flex animate-scroll">
+          {[...clothingDeals, ...clothingDeals].map((deal, index) => (
+            <ProductCard key={index} product={deal} />
+          ))}
+        </div>
       </div>
+
+      {/* Scrolling container for Food Deals */}
+      <div className="overflow-hidden">
+        <div className="flex animate-scroll">
+          {[...foodDeals, ...foodDeals].map((deal, index) => (
+            <ProductCard key={index} product={deal} />
+          ))}
+        </div>
+      </div>
+
+      {/* Tailwind animation */}
+      <style jsx>{`
+        .animate-scroll {
+          animation: scroll 20s linear infinite;
+        }
+
+        @keyframes scroll {
+          0% {
+            transform: translateX(0%);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+      `}</style>
     </div>
   );
 }
+
