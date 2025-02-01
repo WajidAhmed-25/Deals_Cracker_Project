@@ -32,7 +32,7 @@ import OTPVerification from './Components/OTPVerification';
 import UpdatePassword from './Components/UpdatePassword';
 import CreateProfile from './Components/CreateProfile';
 
-// Componentssss //
+// Components//
 function Layout() {
   const location = useLocation();
 
