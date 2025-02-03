@@ -203,6 +203,7 @@ import ProductGrid from './ProductGrid/index';
 import { ChevronLeft, ChevronRight, Search } from 'lucide-react';
 import Cookies from 'js-cookie';
 import FeaturesSection from '../HomePage/Banners';
+import { FaSearch } from "react-icons/fa";
 
 const ProductPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -303,6 +304,8 @@ const ProductPage = () => {
     fetchProducts(1, activeCategory, limit, { ...filters, search: searchTerm }, brandName);
   };
 
+
+
   return (
     <div className="px-4 py-2 mx-auto bg-white max-w-8xl">
       <div className="flex flex-row gap-4 p-2">
@@ -339,67 +342,48 @@ const ProductPage = () => {
           p-4 pt-12 shadow-lg rounded-lg`}
         >
           <div className="flex flex-row w-full justify-between items-center mb-4">
-            {/* Search Bar */}
-            {/* <div className="relative w-full max-w-md">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={handleSearchChange}
-                placeholder="Search for products..."
-                className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#237da0f8] focus:border-[#237da0f8]"
-              />
-              <Search className="absolute right-3 top-2.5 text-gray-500 w-5 h-5" />
-            </div> */}
 
-<div className='relative w-[40%]'>
- <button class="absolute left-2 -translate-y-1/2 top-1/2 p-1">
-    <svg
-      width="17"
-      height="16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
-      aria-labelledby="search"
-      class="w-5 h-5 text-gray-700"
-    >
-      <path
-        d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
-        stroke="currentColor"
-        stroke-width="1.333"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      ></path>
-    </svg>
-  </button>
-  <input
-    class="input w-full text-center rounded-full px-8 py-3 border-2 border-transparent focus:outline-none focus:border-blue-500 placeholder-gray-400 transition-all duration-300 shadow-md"
-    type="text"
-    value={searchQuery}
-    onChange={handleSearchChange}
-    placeholder="Search for products..."
-  />
-  <button type="reset" class="absolute right-3 -translate-y-1/2 top-1/2 p-1">
-    {/* <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="w-5 h-5 text-gray-700"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="M6 18L18 6M6 6l12 12"
-      ></path>
-    </svg> */}
-  </button>
+<div className="relative w-[80%] flex items-center justify-center p-4">
+  <div className="relative w-1/2">
+  <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#237da0f8] font-semibold w-5 h-5"/>
+  {/* <svg
+  width="32"
+  height="32"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-labelledby="search"
+  className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 text-gray-500 bg-pink-400"
+>
+  <path
+    d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
+    stroke="currentColor"
+    strokeWidth="1.333"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="text-yellow-400"
+  />
+</svg> */}
+    <input
+      className="w-full pl-10 pr-4 py-4 text-center rounded-full border-2 border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-400 transition-all duration-300 shadow-md"
+      type="text"
+      value={searchQuery}
+      onChange={handleSearchChange}
+      placeholder="Search for products..."
+    />
+    <button type="reset" className="absolute right-4 top-1/2 transform -translate-y-1/2">
+
+    </button>
+  </div>
 </div>
+
+
             
             {/* <span className="text-lg font-semibold">Showing {limit} products per page</span> */}
             <select
               value={limit}
               onChange={(e) => setLimit(Number(e.target.value))}
-              className="p-2 border border-gray-300 rounded-md shadow-sm"
+              className="p-2 px-6 border border-[#237da0f8] rounded-lg shadow-2xl text-center hover:scale-110 hover:duration-300 hover:transition-all"
             >
               <option value={10}>10 per page</option>
               <option value={50}>50 per page</option>

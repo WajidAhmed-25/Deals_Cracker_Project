@@ -62,7 +62,9 @@ const Index = () => {
   };
 
   return (
-    <div className='relative w-full -z-10'>
+    // <div className='relative w-full -z-10'>
+
+    <div className='w-full'>
 
       <motion.div
         initial="hidden"
@@ -132,7 +134,7 @@ const Index = () => {
         </motion.div>
       </motion.div>
 
-      {/* <motion.div
+      <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -141,7 +143,18 @@ const Index = () => {
         <motion.div variants={staggerItem}>
           <WeeklyTopVendors />
         </motion.div>
-      </motion.div> */}
+      </motion.div>
+
+<motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={staggerContainer}
+      >
+        <motion.div variants={staggerItem}>
+          <DeliveryBanner />
+        </motion.div>
+      </motion.div>
 
       <motion.div
         initial="hidden"
@@ -154,16 +167,7 @@ const Index = () => {
         </motion.div>
       </motion.div>
 
-      {/* <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={staggerContainer}
-      >
-        <motion.div variants={staggerItem}>
-          <DeliveryBanner />
-        </motion.div>
-      </motion.div> */}
+      
 
       {/* <motion.div
         initial="hidden"

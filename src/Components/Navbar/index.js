@@ -145,7 +145,7 @@ const Index = () => {
 
               {/* Profile */}
               <div ref={profileRef}>
-                <div className="flex items-center justify-center w-12 h-12 bg-white rounded-full shadow-lg cursor-pointer">
+                <div className="flex items-center justify-center w-12 h-12 bg-white rounded-full shadow-lg cursor-pointer ">
                   <img
                     src={profile ? profile.profilePicture : "https://via.placeholder.com/64"}
                     alt="Profile"

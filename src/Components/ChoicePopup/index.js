@@ -393,7 +393,7 @@ const Index = () => {
   };
 
   return (
-    <div className="relative min-h-screen">
+    <div className="">
       {/* Background text */}
       <div className="p-0">
         <Homepage />

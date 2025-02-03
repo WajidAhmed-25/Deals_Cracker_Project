@@ -316,7 +316,7 @@ const MostWishlistedBrands = () => {
   };
 
   return (
-    <div className="container px-4 py-8 mx-auto">
+    <div className="container px-4 py-8 mx-auto mt-8">
       {/* Header */}
       <div className="flex flex-col items-center justify-between mb-8 md:flex-row">
         <h2 className="mb-4 text-3xl font-bold md:mb-0 text-[#237da0f8]">Most Wishlisted Brands</h2>

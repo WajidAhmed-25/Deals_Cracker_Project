@@ -201,6 +201,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faChevronRight, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Cookies from "js-cookie";
+import "./dd.css"
 
 const Index = () => {
   const [openMenu, setOpenMenu] = useState(null);
@@ -256,7 +257,7 @@ const Index = () => {
   };
 
   return (
-    <nav className="bg-white border-b-2 shadow-3xl">
+    <nav className="bg-white border-b-2 shadow-3xl ">
       <div className="w-[93%] mx-auto flex items-center justify-between py-4">
         {/* All Categories */}
         <div className="relative group">
@@ -364,26 +365,26 @@ const Index = () => {
 
         {/* Category Toggle Buttons */}
         <div className="flex items-center space-x-4">
-          {/* <button
+          <button
             onClick={() => handleCategoryToggle("both")}
             className={`px-4 py-2 rounded-full ${
               category === "both" ? "bg-[#237da0f8] shadow-3xl text-white" : "bg-white text-gray-700 border shadow-3xl"
             }`}
           >
             Both
-          </button> */}
-          <button
+          </button>
+          {/* <button
             onClick={() => handleCategoryToggle("both")}
-            className={`px-6 py-2 rounded-full ${
+            className={`px-6 py-2 rounded-full  ${
               category === "both" ? "bg-[#237da0f8] hover:bg-[#217595] text-white font-bold py-2 px-4 rounded-full animate-pulse" : "bg-white text-gray-700 border shadow-3xl"
             }`}
           >
             Both
-          </button>
+          </button> */}
           <button
             onClick={() => handleCategoryToggle("clothing")}
             className={`px-6 py-2 rounded-full ${
-              category === "clothing" ? "bg-[#237da0f8] hover:bg-[#217595] text-white font-bold py-2 px-4 rounded-full animate-pulse" : "bg-white text-gray-700 border"
+              category === "clothing" ? "bg-[#237da0f8] shadow-3xl text-white" : "bg-white text-gray-700 border shadow-3xl"
             }`}
           >
             Clothing
@@ -391,7 +392,7 @@ const Index = () => {
           <button
             onClick={() => handleCategoryToggle("food")}
             className={`px-6 py-2 rounded-full ${
-              category === "food" ? "bg-[#237da0f8] hover:bg-[#217595] text-white font-bold py-2 px-4 rounded-full animate-pulse" : "bg-white text-gray-700 border"
+              category === "food" ? "bg-[#237da0f8] shadow-3xl text-white" : "bg-white text-gray-700 border shadow-3xl"
             }`}
           >
             Food

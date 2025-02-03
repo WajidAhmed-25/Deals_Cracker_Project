@@ -11,9 +11,9 @@ const ProductGrid = ({ products, applyFilter }) => {
         <p></p>
  <div className="flex items-center mb-8 space-x-4 " >
    
-<ViewToggleButtons/> 
+{/* <ViewToggleButtons/>  */}
 
- <CustomSelect applyFilter={applyFilter} />
+ {/* <CustomSelect applyFilter={applyFilter} /> */}
         </div>
         
       </div>

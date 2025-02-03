@@ -127,7 +127,8 @@ const OTPVerification = () => {
             </div>
 
             {/* OTP Input */}
-            <div className="mb-4">
+            <div className="mb-4  flex flex-col justify-center items-center">
+
               <label
                 className="block text-sm mb-4 font-medium text-center text-[#267fa2da]"
               >

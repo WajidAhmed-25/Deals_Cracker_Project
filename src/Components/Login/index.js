@@ -70,7 +70,7 @@ const Index = () => {
       else{
         toast.success("Login successful!");
         setTimeout(() => {
-          navigate("/homepage_Without_popup");
+          navigate("/homepage");
         }, 1000);
       }
     } catch (error) {
@@ -172,7 +172,7 @@ const Index = () => {
   <div className="mt-2 hover:scale-110 hover:transition-all hover:cursor-pointer">
     <button
       type="button"
-      onClick={() => navigate("/homepage_Without_popup")}
+      onClick={() => navigate("/homepage")}
       className="flex w-full justify-center rounded-md border border-transparent bg-gray-300 py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 hover:text-white focus:ring-offset-2"
     >
       Continue as Guest

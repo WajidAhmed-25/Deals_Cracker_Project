@@ -31,12 +31,12 @@ return(
                             <div class="text-center mt-6">
                               
                                 <h1 class="fontColor text-2xl tracking-wide font-bold mb-1">
-                                    Tranter Jaskulski
+                                   Marium Azhar
                                 </h1>
 
                                 
                                 <div class="text-black/50 font-semibold  mb-2">
-                                    Founder & Specialist
+                                   Frontend Developer
                                 </div>
 
                               
@@ -74,12 +74,12 @@ return(
                             <div class="text-center mt-6">
                               
                                 <h1 class="fontColor text-2xl tracking-wide font-bold mb-1">
-                                    Denice Jagna
+                                    M. Haris Nadeem 
                                 </h1>
 
                                
                                 <div class="text-black/50 font-semibold  mb-2">
-                                    Tired & M. Specialist
+                                   Backend Developer
                                 </div>
 
                                 
@@ -117,12 +117,12 @@ return(
                             <div class="text-center mt-6">
                                 
                                 <h1 class="fontColor text-2xl tracking-wide font-bold mb-1">
-                                    Kenji Milton
+                                    Wajid Ahmed
                                 </h1>
 
                                
                                 <div class="text-black/50 font-semibold  mb-2">
-                                    Team Memeber
+                                    Backend Developer
                                 </div>
 
                              
@@ -160,12 +160,12 @@ return(
                             <div class="text-center mt-6">
                               
                                 <h1 class="fontColor text-2xl tracking-wide font-bold mb-1">
-                                    Doesn't matter
+                                    Waniya Ishtiaque
                                 </h1>
 
                                
                                 <div class="text-black/50 font-semibold  mb-2">
-                                    Will be fired
+                                    Content Writer
                                 </div>
 
                                 

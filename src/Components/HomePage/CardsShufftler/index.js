@@ -133,7 +133,7 @@ const Index = () => {
     <div className="w-[90%] px-4 py-8 mx-auto">
       {/* Header section remains the same */}
       <div className="flex flex-col items-center justify-between mb-8 md:flex-row">
-        <h2 className="mb-4 text-3xl font-bold md:mb-0 text-[#237da0f8]">Top Trending Brands</h2>
+        <h2 className="mb-4 text-4xl font-bold md:mb-0 text-[#237da0f8]">Top Trending Brands</h2>
         <div className="flex flex-wrap justify-center gap-8">
           {['both', 'clothing', 'food'].map((category) => (
             <button

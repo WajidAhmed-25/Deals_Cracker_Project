@@ -146,7 +146,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full relative -z-10">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
